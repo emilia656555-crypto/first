@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Вертикальні рядки</title>
+</head>
+<body bgcolor="#e0e0e0">
+  <center>
+    <h2>П'ять вертикальних рядків</h2>
+    
+    <table width="90%" border="0">
+      <tr>
+        <!-- 1. Коливання -->
+        <td width="20%">
+          <marquee width="150" bgcolor="#ffcccc" height="200" behavior="alternate" direction="up" scrollamount="3">
+            <font color="#000000" size="3">
+              <b>Текст коливається вгору-вниз</b><br>
+              Рядок 1<br>
+              Рядок 2<br>
+              Рядок 3
+            </font>
+          </marquee>
+        </td>
+        
+        <!-- 2. Знизу вгору -->
+        <td width="20%">
+          <marquee width="150" bgcolor="#ccffcc" height="200" behavior="scroll" direction="up" scrollamount="4">
+            <font color="#000000" size="3">
+              <b>Текст знизу вгору</b><br>
+              <img src="image/emblem.jpg" height="30"><br>
+              <img src="image/clock.jpg" height="30"><br>
+              Картинки біжать
+            </font>
+          </marquee>
+        </td>
+        
+        <!-- 3. Згори вниз з зупинкою -->
+        <td width="20%">
+          <marquee width="150" bgcolor="#ccccff" height="200" behavior="slide" direction="down" scrollamount="3">
+            <font color="#000000" size="3">
+              <b>Текст згори вниз</b><br>
+              Рядок А<br>
+              Рядок Б<br>
+              Рядок В<br>
+              Зупиниться тут
+            </font>
+          </marquee>
+        </td>
+        
+        <!-- 4. Різні затримки -->
+        <td width="20%">
+          <marquee width="150" bgcolor="#ffffcc" height="200" behavior="scroll" direction="up" scrolldelay="100">
+            <font color="#000000" size="3">
+              <b>Швидкий текст</b><br>
+              Затримка 100ms<br>
+              Швидке переміщення
+            </font>
+          </marquee>
+        </td>
+        
+        <!-- 5. Інша затримка -->
+        <td width="20%">
+          <marquee width="150" bgcolor="#ffccff" height="200" behavior="scroll" direction="up" scrolldelay="300">
+            <font color="#000000" size="3">
+              <b>Повільний текст</b><br>
+              Затримка 300ms<br>
+              Повільне переміщення
+            </font>
+          </marquee>
+        </td>
+      </tr>
+    </table>
+    
+  </center>
+</body>
+</html>
