@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Моя Батьківщина</title>
+    <title>Моя Україна</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #0057b7, #ffd700);
             font-family: 'Arial', sans-serif;
             color: white;
             min-height: 100vh;
@@ -27,6 +27,11 @@
             font-size: 3em;
             margin-bottom: 10px;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ukraine-flag {
+            font-size: 4em;
+            margin: 20px 0;
         }
         
         .subtitle {
@@ -106,13 +111,44 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        
+        .info-card h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .city-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .city-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .city-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .city-info {
+            padding: 15px;
         }
     </style>
 </head>
 <body>
     <section class="hero">
-        <h1>🇺🇦 Моя Батьківщина</h1>
-        <p class="subtitle">Досліджуйте прекрасні куточки нашої землі</p>
+        <div class="ukraine-flag">🇺🇦</div>
+        <h1>Моя Україна</h1>
+        <p class="subtitle">Прекрасна країна з багатою історією та культурою</p>
     </section>
 
     <section class="map-section">
@@ -145,18 +181,45 @@
             </div>
         </div>
 
+        <div class="city-gallery">
+            <div class="city-card">
+                <img src="https://images.unsplash.com/photo-1596484552991-6c0a0c5e3b0c?w=250&h=150&fit=crop" 
+                     alt="Київ" class="city-image">
+                <div class="city-info">
+                    <h4>Київ</h4>
+                    <p>Столиця з золотими банями</p>
+                </div>
+            </div>
+            <div class="city-card">
+                <img src="https://images.unsplash.com/photo-1598373180570-c3df2dfa3bb9?w=250&h=150&fit=crop" 
+                     alt="Львів" class="city-image">
+                <div class="city-info">
+                    <h4>Львів</h4>
+                    <p>Місто левів та кави</p>
+                </div>
+            </div>
+            <div class="city-card">
+                <img src="https://images.unsplash.com/photo-1587332272152-89611847c0c8?w=250&h=150&fit=crop" 
+                     alt="Одеса" class="city-image">
+                <div class="city-info">
+                    <h4>Одеса</h4>
+                    <p>Жемчужина біля моря</p>
+                </div>
+            </div>
+        </div>
+
         <div class="info-grid">
             <div class="info-card">
                 <h3>🎭 Культура</h3>
-                <p>Багата культурна спадщина, традиції та сучасне мистецтво.</p>
+                <p>Багата культурна спадщина, традиції та сучасне мистецтво. Вишиванка, писанки, козацькі пісні.</p>
             </div>
             <div class="info-card">
                 <h3>🍲 Кухня</h3>
-                <p>Смачні національні страви: борщ, вареники, сало.</p>
+                <p>Смачні національні страви: борщ, вареники, сало, деруни, голубці.</p>
             </div>
             <div class="info-card">
                 <h3>🏞️ Природа</h3>
-                <p>Чудові природні ландшафти: Карпати, степи, річки.</p>
+                <p>Чудові природні ландшафти: Карпати, степи, річки, Чорне море.</p>
             </div>
         </div>
     </section>
