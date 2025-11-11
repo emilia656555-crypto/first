@@ -153,29 +153,30 @@
 
     <section class="map-section">
         <div class="interactive-map">
-            <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?w=1000&h=600&fit=crop" 
+            <!-- ЗАМЕНИЛ НА УКРАИНСКУЮ КАРТУ -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Ukraine_Karte.png" 
                  alt="Карта України" class="map-image" usemap="#ukraineMap">
             
             <!-- Горячие точки -->
-            <div class="hotspot" style="top: 30%; left: 25%;" 
+            <div class="hotspot" style="top: 30%; left: 45%;" 
                  onmouseover="showCard('kyiv')" onmouseout="hideCard('kyiv')"></div>
-            <div class="hotspot" style="top: 45%; left: 60%;" 
+            <div class="hotspot" style="top: 35%; left: 20%;" 
                  onmouseover="showCard('lviv')" onmouseout="hideCard('lviv')"></div>
-            <div class="hotspot" style="top: 65%; left: 40%;" 
+            <div class="hotspot" style="top: 55%; left: 45%;" 
                  onmouseover="showCard('odesa')" onmouseout="hideCard('odesa')"></div>
 
             <!-- Карточки информации -->
-            <div class="location-card" id="kyiv" style="top: 10%; left: 30%;">
+            <div class="location-card" id="kyiv" style="top: 10%; left: 50%;">
                 <h3>🏛️ Київ</h3>
                 <p>Столиця України, місто з багатовіковою історією та прекрасною архітектурою.</p>
             </div>
             
-            <div class="location-card" id="lviv" style="top: 35%; left: 65%;">
+            <div class="location-card" id="lviv" style="top: 25%; left: 15%;">
                 <h3>☕ Львів</h3>
                 <p>Культурна столиця України, відома своїми кав'ярнями та середньовічною архітектурою.</p>
             </div>
             
-            <div class="location-card" id="odesa" style="top: 55%; left: 45%;">
+            <div class="location-card" id="odesa" style="top: 45%; left: 50%;">
                 <h3>🌊 Одеса</h3>
                 <p>Морська столиця України, знаменита своїм гумором та пляжами.</p>
             </div>
@@ -183,7 +184,8 @@
 
         <div class="city-gallery">
             <div class="city-card">
-                <img src="https://images.unsplash.com/photo-1596484552991-6c0a0c5e3b0c?w=250&h=150&fit=crop" 
+                <!-- ЗАМЕНИЛ НА КИЕВ -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/St._Michael%27s_Golden-Domed_Cathedral_%28Kyiv%29.jpg/800px-St._Michael%27s_Golden-Domed_Cathedral_%28Kyiv%29.jpg" 
                      alt="Київ" class="city-image">
                 <div class="city-info">
                     <h4>Київ</h4>
@@ -191,7 +193,8 @@
                 </div>
             </div>
             <div class="city-card">
-                <img src="https://images.unsplash.com/photo-1598373180570-c3df2dfa3bb9?w=250&h=150&fit=crop" 
+                <!-- ЗАМЕНИЛ НА ЛЬВОВ -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Lviv_-_panorama_of_old_town.jpg/800px-Lviv_-_panorama_of_old_town.jpg" 
                      alt="Львів" class="city-image">
                 <div class="city-info">
                     <h4>Львів</h4>
@@ -199,7 +202,8 @@
                 </div>
             </div>
             <div class="city-card">
-                <img src="https://images.unsplash.com/photo-1587332272152-89611847c0c8?w=250&h=150&fit=crop" 
+                <!-- ЗАМЕНИЛ НА ОДЕССУ -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Odessa_Shevchenko_Park.jpg/800px-Odessa_Shevchenko_Park.jpg" 
                      alt="Одеса" class="city-image">
                 <div class="city-info">
                     <h4>Одеса</h4>
@@ -225,9 +229,9 @@
     </section>
 
     <map name="ukraineMap">
-        <area shape="circle" coords="250,180,30" href="#" alt="Київ" title="Столиця України">
-        <area shape="circle" coords="600,270,30" href="#" alt="Львів" title="Культурна столиця">
-        <area shape="circle" coords="400,390,30" href="#" alt="Одеса" title="Морська столиця">
+        <area shape="circle" coords="450,180,30" href="#" alt="Київ" title="Столиця України">
+        <area shape="circle" coords="200,270,30" href="#" alt="Львів" title="Культурна столиця">
+        <area shape="circle" coords="450,390,30" href="#" alt="Одеса" title="Морська столиця">
     </map>
 
     <script>
