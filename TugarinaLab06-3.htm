@@ -2,246 +2,147 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Моя Україна</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Одеса - Жемчужина біля моря</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0057b7, #ffd700);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
             min-height: 100vh;
+            padding: 20px;
         }
         
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .ukraine-flag {
-            font-size: 4em;
-            margin: 20px 0;
-        }
-        
-        .subtitle {
-            font-size: 1.3em;
-            opacity: 0.9;
-        }
-        
-        .map-section {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .interactive-map {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .map-image {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .location-card {
-            position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 250px;
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        .location-card.show {
-            opacity: 1;
-        }
-        
-        .location-card h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-        
-        .hotspot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff6b6b;
-            border-radius: 50%;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            z-index: 5;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .info-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-        
-        .info-card h3 {
-            color: #ffd700;
-            margin-bottom: 15px;
-        }
-        
-        .city-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
         }
         
         .city-card {
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .city-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .city-header h2 {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .city-header .subtitle {
+            font-size: 1.3em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .image-placeholder {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            height: 300px;
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
         }
         
-        .city-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
+        .description {
+            font-size: 1.1em;
+            line-height: 1.6;
         }
         
-        .city-info {
-            padding: 15px;
+        .highlights {
+            margin-top: 20px;
+        }
+        
+        .highlights h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .highlights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .highlights li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .highlights li:before {
+            content: "★";
+            color: #ffd700;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .city-header h2 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="ukraine-flag">🇺🇦</div>
-        <h1>Моя Україна</h1>
-        <p class="subtitle">Прекрасна країна з багатою історією та культурою</p>
-    </section>
-
-    <section class="map-section">
-        <div class="interactive-map">
-            <!-- ЗАМЕНИЛ НА УКРАИНСКУЮ КАРТУ -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Ukraine_Karte.png" 
-                 alt="Карта України" class="map-image" usemap="#ukraineMap">
-            
-            <!-- Горячие точки -->
-            <div class="hotspot" style="top: 30%; left: 45%;" 
-                 onmouseover="showCard('kyiv')" onmouseout="hideCard('kyiv')"></div>
-            <div class="hotspot" style="top: 35%; left: 20%;" 
-                 onmouseover="showCard('lviv')" onmouseout="hideCard('lviv')"></div>
-            <div class="hotspot" style="top: 55%; left: 45%;" 
-                 onmouseover="showCard('odesa')" onmouseout="hideCard('odesa')"></div>
-
-            <!-- Карточки информации -->
-            <div class="location-card" id="kyiv" style="top: 10%; left: 50%;">
-                <h3>🏛️ Київ</h3>
-                <p>Столиця України, місто з багатовіковою історією та прекрасною архітектурою.</p>
+    <div class="container">
+        <div class="city-card">
+            <div class="city-header">
+                <h2>Одеса</h2>
+                <div class="subtitle">Жемчужина біля моря</div>
             </div>
             
-            <div class="location-card" id="lviv" style="top: 25%; left: 15%;">
-                <h3>☕ Львів</h3>
-                <p>Культурна столиця України, відома своїми кав'ярнями та середньовічною архітектурою.</p>
-            </div>
-            
-            <div class="location-card" id="odesa" style="top: 45%; left: 50%;">
-                <h3>🌊 Одеса</h3>
-                <p>Морська столиця України, знаменита своїм гумором та пляжами.</p>
-            </div>
-        </div>
-
-        <div class="city-gallery">
-            <div class="city-card">
-                <!-- ЗАМЕНИЛ НА КИЕВ -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/St._Michael%27s_Golden-Domed_Cathedral_%28Kyiv%29.jpg/800px-St._Michael%27s_Golden-Domed_Cathedral_%28Kyiv%29.jpg" 
-                     alt="Київ" class="city-image">
-                <div class="city-info">
-                    <h4>Київ</h4>
-                    <p>Столиця з золотими банями</p>
+            <div class="content-grid">
+                <div class="image-placeholder">
+                    [Фото Одесского оперного театра<br>или Потемкинской лестницы]
                 </div>
-            </div>
-            <div class="city-card">
-                <!-- ЗАМЕНИЛ НА ЛЬВОВ -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Lviv_-_panorama_of_old_town.jpg/800px-Lviv_-_panorama_of_old_town.jpg" 
-                     alt="Львів" class="city-image">
-                <div class="city-info">
-                    <h4>Львів</h4>
-                    <p>Місто левів та кави</p>
-                </div>
-            </div>
-            <div class="city-card">
-                <!-- ЗАМЕНИЛ НА ОДЕССУ -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Odessa_Shevchenko_Park.jpg/800px-Odessa_Shevchenko_Park.jpg" 
-                     alt="Одеса" class="city-image">
-                <div class="city-info">
-                    <h4>Одеса</h4>
-                    <p>Жемчужина біля моря</p>
+                
+                <div class="text-content">
+                    <div class="description">
+                        <p>Одеса - сонячне, наповнене гумором та особливим шармом портове місто на узбережжі Чорного моря. Відома своїм курортним районом Аркадія, чудовою архітектурою та гостинними мешканцями.</p>
+                    </div>
+                    
+                    <div class="highlights">
+                        <h3>Основні пам'ятки:</h3>
+                        <ul>
+                            <li>Одеський оперний театр</li>
+                            <li>Потемкинська сходи</li>
+                            <li>Пляж Аркадія</li>
+                            <li>Одеський морський порт</li>
+                            <li>Привоз</li>
+                            <li>Дерибасівська вулиця</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>🎭 Культура</h3>
-                <p>Багата культурна спадщина, традиції та сучасне мистецтво. Вишиванка, писанки, козацькі пісні.</p>
-            </div>
-            <div class="info-card">
-                <h3>🍲 Кухня</h3>
-                <p>Смачні національні страви: борщ, вареники, сало, деруни, голубці.</p>
-            </div>
-            <div class="info-card">
-                <h3>🏞️ Природа</h3>
-                <p>Чудові природні ландшафти: Карпати, степи, річки, Чорне море.</p>
-            </div>
-        </div>
-    </section>
-
-    <map name="ukraineMap">
-        <area shape="circle" coords="450,180,30" href="#" alt="Київ" title="Столиця України">
-        <area shape="circle" coords="200,270,30" href="#" alt="Львів" title="Культурна столиця">
-        <area shape="circle" coords="450,390,30" href="#" alt="Одеса" title="Морська столиця">
-    </map>
-
-    <script>
-        function showCard(cardId) {
-            document.getElementById(cardId).classList.add('show');
-        }
-        
-        function hideCard(cardId) {
-            document.getElementById(cardId).classList.remove('show');
-        }
-    </script>
+    </div>
 </body>
 </html>
