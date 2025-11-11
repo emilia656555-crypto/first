@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Геометрична навігація</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 40px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .geometric-art {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            border-radius: 20px;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+        
+        .shape {
+            position: absolute;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .shape:hover {
+            transform: scale(1.1) rotate(5deg);
+            z-index: 10;
+        }
+        
+        .circle {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            top: 50px;
+            left: 100px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .rectangle {
+            width: 180px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            top: 200px;
+            left: 200px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 140px solid rgba(255, 255, 255, 0.9);
+            top: 80px;
+            left: 350px;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+        }
+        
+        .shape-label {
+            position: absolute;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.1em;
+            pointer-events: none;
+        }
+        
+        .circle-label {
+            top: 95px;
+            left: 130px;
+        }
+        
+        .rectangle-label {
+            top: 235px;
+            left: 240px;
+        }
+        
+        .triangle-label {
+            top: 150px;
+            left: 390px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .nav-link {
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .nav-link:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Геометрична навігація</h1>
+        
+        <div class="geometric-art">
+            <!-- Круг -->
+            <a href="TugarinaLab01-9.htm" class="shape circle" title="🏠 Домашня сторінка">
+                <div class="shape-label circle-label">Головна</div>
+            </a>
+            
+            <!-- Прямоугольник -->
+            <a href="TugarinaLab05-3.htm" class="shape rectangle" title="🔗 Мої посилання">
+                <div class="shape-label rectangle-label">Посилання</div>
+            </a>
+            
+            <!-- Треугольник -->
+            <a href="TugarinaLab06-3.htm" class="shape triangle" title="🇺🇦 Моя Батьківщина">
+                <div class="shape-label triangle-label">Батьківщина</div>
+            </a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="TugarinaLab01-9.htm" class="nav-link">🏠 Домашня сторінка</a>
+            <a href="TugarinaLab05-3.htm" class="nav-link">🔗 Мої посилання</a>
+            <a href="TugarinaLab06-3.htm" class="nav-link">🇺🇦 Моя Батьківщина</a>
+        </div>
+    </div>
+</body>
+</html>
