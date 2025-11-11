@@ -46,6 +46,12 @@
             font-size: 1.2em;
         }
         
+        .cities-section h2 {
+            color: #0057b7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
         .cities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -70,6 +76,14 @@
             margin-bottom: 10px;
         }
         
+        .city-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin: 15px 0;
+        }
+        
         .culture-section {
             background: #f8f9fa;
             padding: 25px;
@@ -80,18 +94,6 @@
         .culture-section h2 {
             color: #0057b7;
             margin-bottom: 15px;
-        }
-        
-        .image-placeholder {
-            background: #e9ecef;
-            height: 200px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 15px 0;
-            color: #666;
-            font-style: italic;
         }
     </style>
 </head>
@@ -108,19 +110,19 @@
                 <div class="city-card">
                     <h3>Київ</h3>
                     <p>Столиця з золотими банями</p>
-                    <div class="image-placeholder">[Фото Києва]</div>
+                    <img src="https://images.unsplash.com/photo-1591533983517-30dd0aada0e7?w=400" alt="Київ" class="city-image">
                 </div>
                 
                 <div class="city-card">
                     <h3>Львів</h3>
                     <p>Місто левів та кави</p>
-                    <div class="image-placeholder">[Фото Львова]</div>
+                    <img src="https://images.unsplash.com/photo-1590408288771-8f29b9d04b80?w=400" alt="Львів" class="city-image">
                 </div>
                 
                 <div class="city-card">
                     <h3>Одеса</h3>
                     <p>Жемчужина біля моря</p>
-                    <div class="image-placeholder">[Фото Одеси]</div>
+                    <img src="https://images.unsplash.com/photo-1623138564551-87e21a91ad76?w=400" alt="Одеса" class="city-image">
                 </div>
             </div>
         </section>
@@ -128,9 +130,10 @@
         <section class="culture-section">
             <h2>Культура</h2>
             <h3>Кухня</h3>
-            <div class="image-placeholder">[Фото української кухні]</div>
-            <p>Описание украинской кухни...</p>
+            <img src="https://images.unsplash.com/photo-1563245372-f5a8,-4a8d-a97e-e8a74cee23a2?w=400" alt="Українська кухня" class="city-image">
+            <p>Українська кухня славиться своїми традиційними стравами: борщ, вареники, сало, галушки та багато іншого.</p>
         </section>
     </div>
 </body>
 </html>
+
