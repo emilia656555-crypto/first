@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мої друзі</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .friend-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .friend-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .photo-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .friend-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .friend-card:hover .friend-photo {
+            transform: scale(1.1);
+        }
+        
+        .friend-name {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .friend-role {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .friend-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+        
+        .friend-skills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .interactive-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .group-photo-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .group-photo {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .person-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <section class="header">
+        <h1>👥 Мої друзі</h1>
+        <p class="subtitle">Найкраща команда та найвірніші друзі</p>
+    </section>
+
+    <div class="friends-grid">
+        <!-- Друг 1 -->
+        <div class="friend-card">
+            <div class="photo-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                     alt="Андрій" class="friend-photo">
+            </div>
+            <h3 class="friend-name">Андрій</h3>
+            <p class="friend-role">🎯 Лідер команди</p>
+            <p class="friend-description">Відповідальний та цілеспрямований. Завжди допомагає у складних ситуаціях.</p>
+            <div class="friend-skills">
+                <span class="skill-tag">Програмування</span>
+                <span class="skill-tag">Спорт</span>
+                <span class="skill-tag">Музика</span>
+            </div>
+        </div>
+
+        <!-- Друг 2 -->
+        <div class="friend-card">
+            <div class="photo-container">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" 
+                     alt="Олена" class="friend-photo">
+            </div>
+            <h3 class="friend-name">Олена</h3>
+            <p class="friend-role">🎨 Креативний директор</p>
+            <p class="friend-description">Творча особистість з чудовим почуттям гумору. Майстер дизайну та мистецтва.</p>
+            <div class="friend-skills">
+                <span class="skill-tag">Дизайн</span>
+                <span class="skill-tag">Малювання</span>
+                <span class="skill-tag">Фотографія</span>
+            </div>
+        </div>
+
+        <!-- Друг 3 -->
+        <div class="friend-card">
+            <div class="photo-container">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face" 
+                     alt="Максим" class="friend-photo">
+            </div>
+            <h3 class="friend-name">Максим</h3>
+            <p class="friend-role">🔧 Технічний експерт</p>
+            <p class="friend-description">Геній техніки та інновацій. Завжди знає як полагодити будь-що.</p>
+            <div class="friend-skills">
+                <span class="skill-tag">Техніка</span>
+                <span class="skill-tag">Геймінг</span>
+                <span class="skill-tag">Наука</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="interactive-section">
+        <div class="group-photo-container">
+            <h2 style="text-align: center; margin-bottom: 20px;">📸 Наша команда</h2>
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=400&fit=crop" 
+                 alt="Команда друзів" class="group-photo" usemap="#teamMap">
+            
+            <div class="person-tooltip" id="teamTooltip"></div>
+        </div>
+    </section>
+
+    <!-- Карта группового фото -->
+    <map name="teamMap">
+        <area shape="circle" coords="150,200,40" 
+              href="#" 
+              alt="Андрій"
+              title="Андрій - Лідер команди"
+              onmouseover="showPersonInfo('Андрій - Лідер команди<br>Відповідальний та цілеспрямований', 150, 150)">
+        
+        <area shape="circle" coords="400,200,40" 
+              href="#" 
+              alt="Олена"
+              title="Олена - Креативний директор"
+              onmouseover="showPersonInfo('Олена - Креативний директор<br>Творча особистість', 400, 150)">
+        
+        <area shape="circle" coords="650,200,40" 
+              href="#" 
+              alt="Максим"
+              title="Максим - Технічний експерт"
+              onmouseover="showPersonInfo('Максим - Технічний експерт<br>Геній техніки', 650, 150)">
+    </map>
+
+    <script>
+        function showPersonInfo(info, x, y) {
+            const tooltip = document.getElementById('teamTooltip');
+            tooltip.innerHTML = info;
+            tooltip.style.left = (x - 100) + 'px';
+            tooltip.style.top = (y - 80) + 'px';
+            tooltip.style.opacity = '1';
+        }
+        
+        // Скрыть подсказку при уходе с области
+        document.querySelector('img[usemap]').addEventListener('mouseout', function() {
+            document.getElementById('teamTooltip').style.opacity = '0';
+        });
+    </script>
+</body>
+</html>
