@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Розклад занять груп</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .week-navigation {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .week-nav-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .week-nav-table td {
+            padding: 15px;
+            border: none;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background: white;
+            color: #ff6b6b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px;
+            min-height: 800px;
+        }
+        
+        .schedule-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .day-section {
+            margin: 60px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .day-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .day-title::before {
+            content: "📚";
+            margin-right: 15px;
+            font-size: 1.5em;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-table th {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .schedule-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            background: white;
+        }
+        
+        .schedule-table tr:hover td {
+            background: #e8f4fc;
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Навигация по дням недели -->
+        <div class="week-navigation">
+            <table class="week-nav-table">
+                <tr>
+                    <td><a href="#ponedilok" class="nav-link">Понеділок</a></td>
+                    <td><a href="#vivtorok" class="nav-link">Вівторок</a></td>
+                    <td><a href="#sereda" class="nav-link">Середа</a></td>
+                    <td><a href="#chetver" class="nav-link">Четвер</a></td>
+                    <td><a href="#pyatnytsya" class="nav-link">П'ятниця</a></td>
+                    <td><a href="#subota" class="nav-link">Субота</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="content">
+            <h1 class="schedule-title">Розклад занять груп</h1>
+            
+            <!-- Понедельник -->
+            <div class="day-section" id="ponedilok">
+                <h2 class="day-title">Понеділок</h2>
+                <table class="schedule-table">
+                    <tr>
+                        <th>Час</th>
+                        <th>Предмет</th>
+                        <th>Викладач</th>
+                        <th>Аудиторія</th>
+                    </tr>
+                    <tr>
+                        <td>8:30 - 10:00</td>
+                        <td>Математика</td>
+                        <td>Іванова І.І.</td>
+                        <td>101</td>
+                    </tr>
+                    <tr>
+                        <td>10:15 - 11:45</td>
+                        <td>Фізика</td>
+                        <td>Петров П.П.</td>
+                        <td>203</td>
+                    </tr>
+                    <tr>
+                        <td>12:00 - 13:30</td>
+                        <td>Інформатика</td>
+                        <td>Сидорова С.С.</td>
+                        <td>305</td>
+                    </tr>
+                </table>
+                <a href="#" class="back-to-top">↑ Нагору</a>
+            </div>
+
+            <!-- Вторник -->
+            <div class="day-section" id="vivtorok">
+                <h2 class="day-title">Вівторок</h2>
+                <table class="schedule-table">
+                    <tr>
+                        <th>Час</th>
+                        <th>Предмет</th>
+                        <th>Викладач</th>
+                        <th>Аудиторія</th>
+                    </tr>
+                    <tr>
+                        <td>8:30 - 10:00</td>
+                        <td>Українська мова</td>
+                        <td>Коваленко К.К.</td>
+                        <td>102</td>
+                    </tr>
+                    <tr>
+                        <td>10:15 - 11:45</td>
+                        <td>Англійська мова</td>
+                        <td>Мельник М.М.</td>
+                        <td>204</td>
+                    </tr>
+                </table>
+                <a href="#" class="back-to-top">↑ Нагору</a>
+            </div>
+
+            <!-- Добавьте остальные дни по аналогии -->
+            <!-- Среда -->
+            <div class="day-section" id="sereda">
+                <h2 class="day-title">Середа</h2>
+                <!-- Таблица расписания -->
+                <a href="#" class="back-to-top">↑ Нагору</a>
+            </div>
+
+            <!-- Четверг -->
+            <div class="day-section" id="chetver">
+                <h2 class="day-title">Четвер</h2>
+                <!-- Таблица расписания -->
+                <a href="#" class="back-to-top">↑ Нагору</a>
+            </div>
+
+            <!-- Пятница -->
+            <div class="day-section" id="pyatnytsya">
+                <h2 class="day-title">П'ятниця</h2>
+                <!-- Таблица расписания -->
+                <a href="#" class="back-to-top">↑ Нагору</a>
+            </div>
+
+            <!-- Суббота -->
+            <div class="day-section" id="subota">
+                <h2 class="day-title">Субота</h2>
+                <!-- Таблица расписания -->
+                <a href="#" class="back-to-top">↑ Нагору</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
