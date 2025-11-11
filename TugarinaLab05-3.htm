@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мої гіперпосилання</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-button {
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .nav-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+        
+        .links-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .link-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+        }
+        
+        .link-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-left-color: #e74c3c;
+        }
+        
+        .link-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-title a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .link-title a:hover {
+            color: #e74c3c;
+        }
+        
+        .link-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            padding-left: 30px;
+        }
+        
+        .link-icon {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        
+        .back-to-top {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Мої гіперпосилання</h1>
+            <div class="nav-buttons">
+                <a href="TugarinaLab01-9.htm" class="nav-button">На головну сторінку</a>
+                <a href="mailto:your.email@example.com" class="nav-button">Написати мені</a>
+            </div>
+        </header>
+        
+        <div class="links-container">
+            <div class="link-item">
+                <div class="link-title">
+                    <span class="link-icon">📧</span>
+                    <a href="https://www.gmail.com" target="_blank">Gmail</a>
+                </div>
+                <div class="link-description">
+                    Gmail - популярна безкоштовна поштова служба від Google з потужним пошуком та тегами.
+                </div>
+            </div>
+            
+            <div class="link-item">
+                <div class="link-title">
+                    <span class="link-icon">🔍</span>
+                    <a href="https://www.google.ua" target="_blank">Google</a>
+                </div>
+                <div class="link-description">
+                    Google - один із популярних в Україні пошукових серверів з розширеними можливостями пошуку.
+                </div>
+            </div>
+            
+            <!-- Добавьте остальные 4-6 ссылок по аналогии -->
+            <div class="link-item">
+                <div class="link-title">
+                    <span class="link-icon">🎬</span>
+                    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+                </div>
+                <div class="link-description">
+                    YouTube - найбільша у світі платформа для перегляду та публікації відео.
+                </div>
+            </div>
+            
+            <div class="link-item">
+                <div class="link-title">
+                    <span class="link-icon">💼</span>
+                    <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+                </div>
+                <div class="link-description">
+                    LinkedIn - професійна соціальна мережа для пошуку роботи та ділових контактів.
+                </div>
+            </div>
+            
+            <div class="link-item">
+                <div class="link-title">
+                    <span class="link-icon">📚</span>
+                    <a href="https://www.wikipedia.org" target="_blank">Wikipedia</a>
+                </div>
+                <div class="link-description">
+                    Wikipedia - вільна енциклопедія, яку може редагувати кожен.
+                </div>
+            </div>
+            
+            <div class="link-item">
+                <div class="link-title">
+                    <span class="link-icon">🌧️</span>
+                    <a href="https://www.meteo.ua" target="_blank">Meteo.ua</a>
+                </div>
+                <div class="link-description">
+                    Meteo.ua - український погодний портал з точними прогнозами погоди.
+                </div>
+            </div>
+        </div>
+        
+        <a href="#" class="back-to-top">↑ У початок сторінки</a>
+        
+        <footer>
+            <p>© 2024 Мої гіперпосилання | Створено з ❤️</p>
+        </footer>
+    </div>
+</body>
+</html>
