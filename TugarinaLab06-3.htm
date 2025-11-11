@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя Батьківщина</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .map-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .interactive-map {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .map-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .location-card {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 250px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        .location-card.show {
+            opacity: 1;
+        }
+        
+        .location-card h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .hotspot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            z-index: 5;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>🇺🇦 Моя Батьківщина</h1>
+        <p class="subtitle">Досліджуйте прекрасні куточки нашої землі</p>
+    </section>
+
+    <section class="map-section">
+        <div class="interactive-map">
+            <img src="https://images.unsplash.com/photo-1513326738677-b964603b136d?w=1000&h=600&fit=crop" 
+                 alt="Карта України" class="map-image" usemap="#ukraineMap">
+            
+            <!-- Горячие точки -->
+            <div class="hotspot" style="top: 30%; left: 25%;" 
+                 onmouseover="showCard('kyiv')" onmouseout="hideCard('kyiv')"></div>
+            <div class="hotspot" style="top: 45%; left: 60%;" 
+                 onmouseover="showCard('lviv')" onmouseout="hideCard('lviv')"></div>
+            <div class="hotspot" style="top: 65%; left: 40%;" 
+                 onmouseover="showCard('odesa')" onmouseout="hideCard('odesa')"></div>
+
+            <!-- Карточки информации -->
+            <div class="location-card" id="kyiv" style="top: 10%; left: 30%;">
+                <h3>🏛️ Київ</h3>
+                <p>Столиця України, місто з багатовіковою історією та прекрасною архітектурою.</p>
+            </div>
+            
+            <div class="location-card" id="lviv" style="top: 35%; left: 65%;">
+                <h3>☕ Львів</h3>
+                <p>Культурна столиця України, відома своїми кав'ярнями та середньовічною архітектурою.</p>
+            </div>
+            
+            <div class="location-card" id="odesa" style="top: 55%; left: 45%;">
+                <h3>🌊 Одеса</h3>
+                <p>Морська столиця України, знаменита своїм гумором та пляжами.</p>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🎭 Культура</h3>
+                <p>Багата культурна спадщина, традиції та сучасне мистецтво.</p>
+            </div>
+            <div class="info-card">
+                <h3>🍲 Кухня</h3>
+                <p>Смачні національні страви: борщ, вареники, сало.</p>
+            </div>
+            <div class="info-card">
+                <h3>🏞️ Природа</h3>
+                <p>Чудові природні ландшафти: Карпати, степи, річки.</p>
+            </div>
+        </div>
+    </section>
+
+    <map name="ukraineMap">
+        <area shape="circle" coords="250,180,30" href="#" alt="Київ" title="Столиця України">
+        <area shape="circle" coords="600,270,30" href="#" alt="Львів" title="Культурна столиця">
+        <area shape="circle" coords="400,390,30" href="#" alt="Одеса" title="Морська столиця">
+    </map>
+
+    <script>
+        function showCard(cardId) {
+            document.getElementById(cardId).classList.add('show');
+        }
+        
+        function hideCard(cardId) {
+            document.getElementById(cardId).classList.remove('show');
+        }
+    </script>
+</body>
+</html>
