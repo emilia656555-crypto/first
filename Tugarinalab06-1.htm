@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 1 - Клікабельна картинка</title>
+</head>
+<body style="background-color: #f0f8ff; text-align: center; padding: 50px; font-family: Arial;">
+
+    <h1 style="color: #2c3e50;">Лабораторна робота №6</h1>
+    <h2 style="color: #34495e;">Завдання 1: Картина з посиланням</h2>
+
+    <!-- Карта для зображення -->
+    <map name="myMap">
+        <area shape="rect" coords="0,0,400,300" href="https://www.google.com" 
+              title="Перейти на Google" alt="Google">
+    </map>
+
+    <!-- Ваше фото -->
+    <img src="photo1.jpg" 
+         width="400" height="300" 
+         usemap="#myMap" 
+         alt="Мое фото"
+         style="border: 3px solid #3498db; border-radius: 10px; margin: 20px;">
+
+    <p style="color: #7f8c8d;">Натисніть на фото - перейдете на Google</p>
+
+</body>
+</html>
