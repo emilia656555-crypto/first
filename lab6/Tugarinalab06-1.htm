@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 1 - Клікабельна картинка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 30px;
+            color: white;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        .photo-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        .clickable-photo {
+            width: 600px;
+            height: 400px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .clickable-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.8);
+        }
+        .instructions {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        .info-box {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .info-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌄 Лабораторна робота №6</h1>
+        <h2>Завдання 1: Сенсорне зображення</h2>
+        
+        <div class="instructions">
+            <p>✨ <strong>Наведи курсор на фото та клацни - перейдеш на Google</strong></p>
+            <p>📸 <em>Використовуємо реальну фотографію з вашого репозиторію</em></p>
+        </div>
+
+        <!-- Карта для зображення -->
+        <map name="photoMap">
+            <area shape="rect" coords="0,0,600,400" href="https://www.google.com" 
+                  title="Перейти на Google" alt="Google">
+        </map>
+
+        <div class="photo-container">
+            <!-- Ваше реальное фото -->
+            <img src="nature1.jpg" 
+                 class="clickable-photo" 
+                 usemap="#photoMap" 
+                 alt="Природний пейзаж">
+        </div>
+
+        <div class="info-box">
+            <div class="info-item">
+                <h3>📏 Розміри</h3>
+                <p>600 × 400 пікселів</p>
+            </div>
+            <div class="info-item">
+                <h3>🎯 Область</h3>
+                <p>Вся поверхня фото</p>
+            </div>
+            <div class="info-item">
+                <h3>🔗 Посилання</h3>
+                <p>Google</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
