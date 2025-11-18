@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Завдання 2 - Карта з кількома зонами</title>
+    <title>Завдання 2 - Інтерактивна карта з фігурами</title>
     <style>
         * {
             margin: 0;
@@ -49,21 +49,49 @@
             font-size: 1.2em;
             text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
-        .photo-container {
-            margin: 30px 0;
-            padding: 15px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 15px;
-            display: inline-block;
+        .image-wrapper {
             position: relative;
+            display: inline-block;
+            margin: 30px 0;
         }
-        .multi-photo {
+        .interactive-photo {
             width: 700px;
             height: 500px;
             border-radius: 10px;
             object-fit: cover;
             border: 3px solid rgba(255,255,255,0.6);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .zone-overlay {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            border: 3px solid;
+            border-radius: 5px;
+        }
+        .zone-overlay.active {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+        .zone-rect {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.3);
+        }
+        .zone-circle {
+            border-color: #4ecdc4;
+            background: rgba(78, 205, 196, 0.3);
+            border-radius: 50%;
+        }
+        .zone-poly {
+            border-color: #45b7d1;
+            background: rgba(69, 183, 209, 0.3);
+            clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+        }
+        .zone-poly2 {
+            border-color: #96ceb4;
+            background: rgba(150, 206, 180, 0.3);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
         }
         .zones-info {
             display: flex;
@@ -80,6 +108,7 @@
             min-width: 150px;
             text-align: center;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         .zone:hover {
             background: rgba(255,255,255,0.3);
@@ -98,112 +127,114 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(1.1); }
         }
-        .zone-visual {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        .zone-example {
-            margin: 0 15px;
-            text-align: center;
-        }
-        .zone-color {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin: 0 auto 10px;
-            border: 2px solid white;
+        .current-zone {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1><span class="sparkle">✨</span> Лабораторна робота №6 <span class="sparkle">✨</span></h1>
-        <h2>Завдання 2: Карта з кількома активними зонами</h2>
+        <h2>Завдання 2: Інтерактивна карта з фігурами</h2>
         
         <div class="instructions">
-            <p>🎯 <strong>Наведи курсор на різні частини фото - побачиш різні підказки!</strong></p>
-            <p>⭐ Кожна зона відповідає реальному об'єкту на фото</p>
+            <p>🎯 <strong>Наведи курсор на різні частини фото - побачиш фігури та підказки!</strong></p>
+            <p>⭐ Кожна зона тепер має видиму фігуру при наведенні</p>
         </div>
 
-        <!-- Візуальне пояснення зон -->
-        <div class="zone-visual">
-            <div class="zone-example">
-                <div class="zone-color" style="background: rgba(255,0,0,0.3);"></div>
-                <div>⬜ Небо</div>
-            </div>
-            <div class="zone-example">
-                <div class="zone-color" style="background: rgba(0,255,0,0.3);"></div>
-                <div>⭕ Вода</div>
-            </div>
-            <div class="zone-example">
-                <div class="zone-color" style="background: rgba(0,0,255,0.3);"></div>
-                <div>🔺 Дерева</div>
-            </div>
-            <div class="zone-example">
-                <div class="zone-color" style="background: rgba(255,255,0,0.3);"></div>
-                <div>🔷 Земля</div>
-            </div>
+        <div class="image-wrapper">
+            <!-- Основное фото -->
+            <img src="nature2.jpg" class="interactive-photo" alt="Природний пейзаж">
+            
+            <!-- Наложения для зон -->
+            <div class="zone-overlay zone-rect" id="zone1" style="top: 50px; left: 50px; width: 200px; height: 100px;"></div>
+            <div class="zone-overlay zone-circle" id="zone2" style="top: 200px; left: 300px; width: 160px; height: 160px;"></div>
+            <div class="zone-overlay zone-poly" id="zone3" style="top: 100px; left: 500px; width: 100px; height: 200px;"></div>
+            <div class="zone-overlay zone-poly2" id="zone4" style="top: 350px; left: 200px; width: 200px; height: 100px;"></div>
+            
+            <!-- Невидимые области для наведения -->
+            <map name="interactiveMap">
+                <area shape="rect" coords="50,50,250,150" href="#" 
+                      title="🏔️ Гірський пейзаж" 
+                      onmouseover="showZone('zone1', '🏔️ Гірський пейзаж')" 
+                      onmouseout="hideZone('zone1')">
+                
+                <area shape="circle" coords="350,250,80" href="#" 
+                      title="🌊 Водойма" 
+                      onmouseover="showZone('zone2', '🌊 Водойма')" 
+                      onmouseout="hideZone('zone2')">
+                
+                <area shape="poly" coords="500,100,600,200,500,300" href="#" 
+                      title="🌲 Лісова зона" 
+                      onmouseover="showZone('zone3', '🌲 Лісова зона')" 
+                      onmouseout="hideZone('zone3')">
+                
+                <area shape="poly" coords="200,400,300,350,400,400,350,450,250,450" href="#" 
+                      title="🏞️ Долина" 
+                      onmouseover="showZone('zone4', '🏞️ Долина')" 
+                      onmouseout="hideZone('zone4')">
+            </map>
+            
+            <img src="nature2.jpg" class="interactive-photo" usemap="#interactiveMap" style="position: absolute; top: 0; left: 0; opacity: 0; cursor: pointer;" alt="">
         </div>
 
-        <!-- Карта для зображення з кількома зонами -->
-        <map name="multiMap">
-            <!-- Небо (верхня частина) -->
-            <area shape="rect" coords="0,0,700,150" href="#" 
-                  title="🌤️ Яскраве небо з хмарами" alt="Небо">
-            
-            <!-- Вода (центр) -->
-            <area shape="circle" coords="350,300,100" href="#" 
-                  title="💧 Прозора вода озерця" alt="Вода">
-            
-            <!-- Дерева (лівий бік) -->
-            <area shape="poly" coords="50,200,150,150,200,300,100,350" href="#" 
-                  title="🌳 Густі дерева та кущі" alt="Дерева">
-            
-            <!-- Земля (правий нижній кут) -->
-            <area shape="poly" coords="500,350,650,400,650,500,500,500" href="#" 
-                  title="🟫 Родюча земля та трава" alt="Земля">
-        </map>
-
-        <div class="photo-container">
-            <!-- Друге фото -->
-            <img src="nature2.jpg" 
-                 class="multi-photo" 
-                 usemap="#multiMap" 
-                 alt="Природний пейзаж з різними зонами">
+        <div class="current-zone" id="currentZone">
+            Наведіть курсор на зону, щоб побачити опис
         </div>
 
         <div class="zones-info">
-            <div class="zone">
+            <div class="zone" onmouseover="showZone('zone1', '🏔️ Гірський пейзаж')" onmouseout="hideZone('zone1')">
                 <div class="zone-shape">⬜</div>
-                <h3>Небо</h3>
-                <p>Верхня частина фото</p>
-                <small>Прямокутна зона</small>
+                <h3>Прямокутник</h3>
+                <p>Гори та небо</p>
             </div>
-            <div class="zone">
+            <div class="zone" onmouseover="showZone('zone2', '🌊 Водойма')" onmouseout="hideZone('zone2')">
                 <div class="zone-shape">⭕</div>
-                <h3>Вода</h3>
-                <p>Центр композиції</p>
-                <small>Кругла зона</small>
+                <h3>Коло</h3>
+                <p>Водойма</p>
             </div>
-            <div class="zone">
+            <div class="zone" onmouseover="showZone('zone3', '🌲 Лісова зона')" onmouseout="hideZone('zone3')">
                 <div class="zone-shape">🔺</div>
-                <h3>Дерева</h3>
-                <p>Лівий бік фото</p>
-                <small>Багатокутна зона</small>
+                <h3>Трикутник</h3>
+                <p>Ліс</p>
             </div>
-            <div class="zone">
+            <div class="zone" onmouseover="showZone('zone4', '🏞️ Долина')" onmouseout="hideZone('zone4')">
                 <div class="zone-shape">🔷</div>
-                <h3>Земля</h3>
-                <p>Правий нижній кут</p>
-                <small>Багатокутна зона</small>
+                <h3>Багатокутник</h3>
+                <p>Долина</p>
             </div>
-        </div>
-
-        <div class="instructions">
-            <p>💡 <strong>Порада:</strong> Координати зон можна налаштувати під конкретне фото за допомогою онлайн-генератора карт</p>
         </div>
     </div>
+
+    <script>
+        function showZone(zoneId, description) {
+            // Показываем фигуру зоны
+            document.getElementById(zoneId).classList.add('active');
+            
+            // Обновляем описание
+            document.getElementById('currentZone').textContent = description;
+        }
+        
+        function hideZone(zoneId) {
+            // Скрываем фигуру зоны
+            document.getElementById(zoneId).classList.remove('active');
+            
+            // Сбрасываем описание
+            document.getElementById('currentZone').textContent = 'Наведіть курсор на зону, щоб побачити опис';
+        }
+        
+        // Настройка координат зон под реальное фото
+        function adjustZones() {
+            // Здесь можно настроить координаты под конкретное фото
+            // Например, если нужно изменить положение зон
+        }
+        
+        // Вызываем при загрузке
+        window.onload = adjustZones;
+    </script>
 </body>
 </html>
