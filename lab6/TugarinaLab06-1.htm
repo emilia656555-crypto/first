@@ -3,18 +3,28 @@
 <head>
   <meta charset="utf-8">
   <title>Tugarina Lab06-1</title>
-</head>
-<body>
-  <h3>Задание 1 — простая карта изображения</h3>
 
-  <!-- Карта с одной областью -->
-  <map name="map1">
-    <!-- Прямоугольная область в любом месте картинки -->
-    <!-- coords: x1, y1, x2, y2 -->
-    <area shape="rect" coords="50,50,200,200" href="#" title="Ты нажала на область!">
-  </map>
+  <style>
+    /* Розовый блестящий фон */
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #ff9adb, #ff6fd7, #ffb3e8);
+      background-size: 400% 400%;
+      animation: sparkle 8s ease infinite;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-  <!-- Картинка -->
-  <img src="nature1.jpg" width="600" usemap="#map1" alt="Изображение">
-</body>
-</html>
+    /* Анимация переливания */
+    @keyframes sparkle {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Белый светящийся текст */
+    h3 {
+      color: #ffffff;
+      font-size: 32px;
+      text-shadow: 0 0 10px white,
