@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Завдання 1 - Сенсорне зображення</title>
+    <title>Завдання 2 - Карта з кількома зонами</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,7 @@
             text-align: center;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255,255,255,0.2);
             padding: 40px;
@@ -41,12 +41,13 @@
             text-shadow: 0 0 5px rgba(255,255,255,0.7);
             opacity: 0.9;
         }
-        .glow-text {
-            font-size: 1.3em;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8),
-                         0 0 20px rgba(255,255,255,0.6);
+        .instructions {
+            background: rgba(255,255,255,0.3);
+            padding: 20px;
+            border-radius: 15px;
             margin: 20px 0;
-            font-weight: bold;
+            font-size: 1.2em;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
         .photo-container {
             margin: 30px 0;
@@ -54,21 +55,34 @@
             background: rgba(255,255,255,0.3);
             border-radius: 15px;
             display: inline-block;
+            position: relative;
         }
-        .clickable-photo {
-            width: 600px;
-            height: 400px;
+        .multi-photo {
+            width: 700px;
+            height: 500px;
             border-radius: 10px;
             object-fit: cover;
             border: 3px solid rgba(255,255,255,0.6);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
-        .clickable-photo:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.9);
+        .zones-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .zone {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        .zone-shape {
+            font-size: 2em;
+            margin-bottom: 10px;
         }
         .sparkle {
             font-size: 1.5em;
@@ -79,59 +93,65 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(1.1); }
         }
-        .feature-list {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        .feature {
-            background: rgba(255,255,255,0.15);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px;
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1><span class="sparkle">✨</span> Лабораторна робота №6 <span class="sparkle">✨</span></h1>
-        <h2>Завдання 1: Сенсорне зображення</h2>
+        <h2>Завдання 2: Карта з кількома активними зонами</h2>
         
-        <p class="glow-text">Наведи курсор на фото та клацни ✨</p>
+        <div class="instructions">
+            <p>🎯 <strong>Наведи курсор на різні частини фото - побачиш різні підказки!</strong></p>
+            <p>⭐ Кожна зона має свою форму та повідомлення</p>
+        </div>
 
-        <!-- Карта для зображення -->
-        <map name="photoMap">
-            <area shape="rect" coords="0,0,600,400" href="https://www.google.com" 
-                  title="Перейти на Google" alt="Google">
+        <!-- Карта для зображення з кількома зонами -->
+        <map name="multiMap">
+            <!-- Прямокутна зона (верхній лівий кут) -->
+            <area shape="rect" coords="50,50,250,150" href="#" 
+                  title="🏔️ Гірський пейзаж" alt="Гори">
+            
+            <!-- Кругла зона (центр) -->
+            <area shape="circle" coords="350,250,80" href="#" 
+                  title="🌊 Водойма" alt="Вода">
+            
+            <!-- Трикутна зона (правий бік) -->
+            <area shape="poly" coords="500,100,600,200,500,300" href="#" 
+                  title="🌲 Лісова зона" alt="Ліс">
+            
+            <!-- Багатокутна зона (низ) -->
+            <area shape="poly" coords="200,400,300,350,400,400,350,450,250,450" href="#" 
+                  title="🏞️ Долина" alt="Долина">
         </map>
 
         <div class="photo-container">
-            <!-- Твое фото -->
-            <img src="nature1.jpg" 
-                 class="clickable-photo" 
-                 usemap="#photoMap" 
-                 alt="Природний пейзаж">
+            <!-- Друге фото -->
+            <img src="nature2.jpg" 
+                 class="multi-photo" 
+                 usemap="#multiMap" 
+                 alt="Природний пейзаж з різними зонами">
         </div>
 
-        <div class="feature-list">
-            <div class="feature">
-                <span class="sparkle">🎯</span>
-                <h3>Клікабельна</h3>
-                <p>Вся поверхня фото</p>
+        <div class="zones-info">
+            <div class="zone">
+                <div class="zone-shape">⬜</div>
+                <h3>Прямокутник</h3>
+                <p>Верхній лівий кут</p>
             </div>
-            <div class="feature">
-                <span class="sparkle">💫</span>
-                <h3>Підказки</h3>
-                <p>Наведи курсор</p>
+            <div class="zone">
+                <div class="zone-shape">⭕</div>
+                <h3>Коло</h3>
+                <p>Центр фото</p>
             </div>
-            <div class="feature">
-                <span class="sparkle">🚀</span>
-                <h3>Посилання</h3>
-                <p>Перехід на Google</p>
+            <div class="zone">
+                <div class="zone-shape">🔺</div>
+                <h3>Трикутник</h3>
+                <p>Правий бік</p>
+            </div>
+            <div class="zone">
+                <div class="zone-shape">🔷</div>
+                <h3>Багатокутник</h3>
+                <p>Нижня частина</p>
             </div>
         </div>
     </div>
