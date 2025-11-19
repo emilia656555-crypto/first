@@ -2,154 +2,60 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Геометричні фігури з посиланнями</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Arial', sans-serif;
+            background: #1e3c72;
             color: white;
+            font-family: Arial;
+            text-align: center;
             padding: 20px;
         }
-        
         .container {
-            text-align: center;
             max-width: 800px;
-            width: 100%;
+            margin: 0 auto;
         }
-        
-        .title {
-            font-size: 2.5rem;
-            font-weight: bold;
+        h1 {
             color: #ffd700;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
-        
-        .description {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-        
-        .image-container {
+        .image-box {
             margin: 20px auto;
             border: 3px solid #ffd700;
-            border-radius: 10px;
             padding: 10px;
             background: white;
-            max-width: 600px;
+            display: inline-block;
         }
-        
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        
-        .link-btn {
-            padding: 10px 20px;
-            background: rgba(255, 215, 0, 0.2);
-            border: 2px solid #ffd700;
-            border-radius: 6px;
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .link-btn:hover {
-            background: #ffd700;
-            color: #1e3c72;
-        }
-        
         .instructions {
-            margin-top: 20px;
+            margin: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            text-align: left;
-        }
-        
-        .instructions h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .instructions ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .instructions li {
-            margin: 8px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .instructions li:before {
-            content: "•";
-            color: #ffd700;
-            position: absolute;
-            left: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Геометричні фігури з посиланнями</h1>
+        <h1>Геометричні фігури з посиланнями</h1>
+        <p>Натисніть на різні фігури на зображенні:</p>
         
-        <p class="description">
-            Натисніть на різні геометричні фігури на зображенні, щоб перейти до інших лабораторних робіт
-        </p>
-
         <!-- Карта изображения -->
         <map name="geometryMap">
-            <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" alt="Полтава" title="Моя Батьківщина - Полтава">
-            <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" alt="Спливаючі заголовки" title="Карта зі спливаючими заголовками">
-            <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" alt="Сенсорне зображення" title="Сенсорне зображення">
+            <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" title="Моя Батьківщина">
+            <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" title="Спливаючі заголовки">
+            <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" title="Сенсорне зображення">
         </map>
 
         <!-- Изображение -->
-        <div class="image-container">
-            <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap">
-        </div>
-
-        <div class="links">
-            <a href="TugarinaLab06-1.htm" class="link-btn">Lab06-1</a>
-            <a href="TugarinaLab06-2.htm" class="link-btn">Lab06-2</a>
-            <a href="TugarinaLab06-3.htm" class="link-btn">Lab06-3</a>
+        <div class="image-box">
+            <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap" width="600" height="400">
         </div>
 
         <div class="instructions">
-            <h3>Інструкція:</h3>
-            <ul>
-                <li><strong>Прямокутник</strong> - перехід до сторінки "Моя Батьківщина" (Lab06-3)</li>
-                <li><strong>Коло</strong> - перехід до карти зі спливаючими заголовками (Lab06-2)</li>
-                <li><strong>Трикутник</strong> - перехід до сенсорного зображення (Lab06-1)</li>
-            </ul>
-            <p style="text-align: center; margin-top: 10px; font-size: 0.9em;">
-                Наведіть курсор на фігури на зображенні та клацніть для переходу
-            </p>
+            <h3>Як працює:</h3>
+            <p>• Прямокутник → Моя Батьківщина (Lab06-3)</p>
+            <p>• Коло → Спливаючі заголовки (Lab06-2)</p>
+            <p>• Трикутник → Сенсорне зображення (Lab06-1)</p>
+            <p><strong>Наведіть курсор на фігури та клацніть!</strong></p>
         </div>
     </div>
 </body>
