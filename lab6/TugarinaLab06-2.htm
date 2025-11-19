@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Завдання 2 - Інтерактивна карта з фігурами</title>
+    <title>Завдання 2 - Карта з кількома зонами</title>
     <style>
         * {
             margin: 0;
@@ -27,18 +27,14 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
         h1 {
-            font-size: 3em;
+            font-size: 2.8em;
             margin-bottom: 15px;
             text-shadow: 0 0 10px rgba(255,255,255,0.8),
-                         0 0 20px rgba(255,255,255,0.6),
-                         0 0 30px rgba(255,255,255,0.4);
-            color: white;
-            font-weight: bold;
+                         0 0 20px rgba(255,255,255,0.6);
         }
         h2 {
-            font-size: 1.8em;
+            font-size: 1.6em;
             margin-bottom: 30px;
-            text-shadow: 0 0 5px rgba(255,255,255,0.7);
             opacity: 0.9;
         }
         .instructions {
@@ -47,14 +43,13 @@
             border-radius: 15px;
             margin: 20px 0;
             font-size: 1.2em;
-            text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
-        .image-wrapper {
+        .image-container {
             position: relative;
             display: inline-block;
             margin: 30px 0;
         }
-        .interactive-photo {
+        .main-photo {
             width: 700px;
             height: 500px;
             border-radius: 10px;
@@ -68,4 +63,176 @@
             opacity: 0;
             transition: all 0.3s ease;
             border: 3px solid;
-            border-radius: 5px;
+        }
+        .zone-overlay.active {
+            opacity: 0.7;
+        }
+        #zone1 {
+            top: 50px;
+            left: 50px;
+            width: 200px;
+            height: 100px;
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.3);
+        }
+        #zone2 {
+            top: 200px;
+            left: 300px;
+            width: 160px;
+            height: 160px;
+            border-color: #4ecdc4;
+            background: rgba(78, 205, 196, 0.3);
+            border-radius: 50%;
+        }
+        #zone3 {
+            top: 100px;
+            left: 500px;
+            width: 100px;
+            height: 200px;
+            border-color: #45b7d1;
+            background: rgba(69, 183, 209, 0.3);
+        }
+        #zone4 {
+            top: 350px;
+            left: 200px;
+            width: 200px;
+            height: 100px;
+            border-color: #96ceb4;
+            background: rgba(150, 206, 180, 0.3);
+        }
+        .zones-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .zone {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .zone:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        .zone-shape {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .current-zone {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            font-size: 1.1em;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sparkle {
+            animation: sparkle 2s infinite;
+            display: inline-block;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="sparkle">✨</span> Лабораторна робота №6 <span class="sparkle">✨</span></h1>
+        <h2>Завдання 2: Карта з кількома активними зонами</h2>
+        
+        <div class="instructions">
+            <p><strong>Наведи курсор на різні частини фото - побачиш фігури та підказки!</strong></p>
+        </div>
+
+        <div class="image-container">
+            <!-- Основное фото с картой -->
+            <img src="nature2.jpg" class="main-photo" alt="Природний пейзаж" usemap="#imageMap">
+            
+            <!-- Наложения для зон -->
+            <div class="zone-overlay" id="zone1"></div>
+            <div class="zone-overlay" id="zone2"></div>
+            <div class="zone-overlay" id="zone3"></div>
+            <div class="zone-overlay" id="zone4"></div>
+            
+            <!-- Карта изображения -->
+            <map name="imageMap">
+                <area shape="rect" coords="50,50,250,150" 
+                      onmouseover="showZone('zone1', '🌳 Дерева')" 
+                      onmouseout="hideZone('zone1')"
+                      href="#">
+                
+                <area shape="circle" coords="350,250,80" 
+                      onmouseover="showZone('zone2', '🌸 Поле з квітами')" 
+                      onmouseout="hideZone('zone2')"
+                      href="#">
+                
+                <area shape="poly" coords="500,100,600,200,500,300" 
+                      onmouseover="showZone('zone3', '🌲 Лісова зона')" 
+                      onmouseout="hideZone('zone3')"
+                      href="#">
+                
+                <area shape="poly" coords="200,400,300,350,400,400,350,450,250,450" 
+                      onmouseover="showZone('zone4', '🏞️ Долина')" 
+                      onmouseout="hideZone('zone4')"
+                      href="#">
+            </map>
+        </div>
+
+        <div class="current-zone" id="currentZone">
+            Наведіть курсор на зону, щоб побачити опис
+        </div>
+
+        <div class="zones-info">
+            <div class="zone" onmouseover="showZone('zone1', '🌳 Дерева')" onmouseout="hideZone('zone1')">
+                <div class="zone-shape">⬜</div>
+                <h3>Дерева</h3>
+                <p>Прямокутна зона</p>
+            </div>
+            <div class="zone" onmouseover="showZone('zone2', '🌸 Поле з квітами')" onmouseout="hideZone('zone2')">
+                <div class="zone-shape">⭕</div>
+                <h3>Поле з квітами</h3>
+                <p>Кругла зона</p>
+            </div>
+            <div class="zone" onmouseover="showZone('zone3', '🌲 Лісова зона')" onmouseout="hideZone('zone3')">
+                <div class="zone-shape">🔺</div>
+                <h3>Лісова зона</h3>
+                <p>Трикутна зона</p>
+            </div>
+            <div class="zone" onmouseover="showZone('zone4', '🏞️ Долина')" onmouseout="hideZone('zone4')">
+                <div class="zone-shape">🔷</div>
+                <h3>Долина</h3>
+                <p>Багатокутна зона</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showZone(zoneId, description) {
+            // Показываем фигуру зоны
+            document.getElementById(zoneId).classList.add('active');
+            
+            // Обновляем описание
+            document.getElementById('currentZone').textContent = description;
+        }
+        
+        function hideZone(zoneId) {
+            // Скрываем фигуру зоны
+            document.getElementById(zoneId).classList.remove('active');
+            
+            // Сбрасываем описание
+            document.getElementById('currentZone').textContent = 'Наведіть курсор на зону, щоб побачити опис';
+        }
+    </script>
+</body>
+</html>
