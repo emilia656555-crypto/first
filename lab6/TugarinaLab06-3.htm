@@ -2,118 +2,92 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Полтава</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полтава - місто з історією</title>
     <style>
+        /* === ОСНОВНЫЕ СТИЛИ === */
         body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            background: linear-gradient(135deg, #0a0a2a, #1a1a4a, #2d2d5a);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            font-family: 'Arial', sans-serif;
+            position: relative;
         }
-
+        
+        /* === КОНТЕЙНЕР === */
         .container {
             text-align: center;
+            z-index: 10;
             position: relative;
-            z-index: 1;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
         }
-
-        .title {
-            font-size: 5rem;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 
-                0 0 10px #ffd700,
-                0 0 20px #ffd700,
-                0 0 30px #ffd700,
-                0 0 40px #ff6b00,
-                0 0 70px #ff6b00,
-                0 0 80px #ff6b00,
-                0 0 100px #ff6b00;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-            letter-spacing: 1px;
-        }
-
-        /* Блестки */
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 
-                0 0 10px 2px #ffd700,
-                0 0 20px 4px #ffd700;
-            animation: sparkle-animation 3s infinite;
-        }
-
-        /* Разные цвета блесток */
-        .sparkle:nth-child(2n) {
-            background: #ffd700;
-            box-shadow: 
-                0 0 10px 2px #ffd700,
-                0 0 20px 4px #ffd700;
-        }
-
-        .sparkle:nth-child(3n) {
-            background: #fff;
-            box-shadow: 
-                0 0 10px 2px #fff,
-                0 0 20px 4px #fff;
-        }
-
-        @keyframes sparkle-animation {
+        
+        /* === АНИМАЦИЯ СВЕЧЕНИЯ ТЕКСТА === */
+        @keyframes text-pulse {
             0%, 100% {
-                opacity: 0;
-                transform: scale(0) translate(0, 0);
+                text-shadow: 
+                    0 0 10px #ffd700,
+                    0 0 20px #ffd700,
+                    0 0 30px #ffd700,
+                    0 0 40px #ff6b00;
             }
             50% {
-                opacity: 1;
-                transform: scale(1) translate(20px, 20px);
+                text-shadow: 
+                    0 0 15px #ffd700,
+                    0 0 30px #ffd700,
+                    0 0 45px #ffd700,
+                    0 0 60px #ff6b00,
+                    0 0 90px #ff6b00;
+            }
+        }
+        
+        /* === АДАПТИВНОСТЬ === */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Основной контейнер с контентом -->
     <div class="container">
-        <div class="title">ПОЛТАВА</div>
-        <div class="subtitle">Місто з історією</div>
+        <h1 class="title">ПОЛТАВА</h1>
+        <div class="subtitle">Місто з історією та славою</div>
+        <p class="description">
+            Місто героїв, місто традицій,<br>
+            Де кожен куточок сповнений легенд.
+        </p>
     </div>
 
     <script>
-        // Создание блесток
+        // Функция создания анимированных блесток
         function createSparkles() {
-            const sparklesCount = 100;
-            const body = document.querySelector('body');
-
+            const sparklesCount = 80;
+            const body = document.body;
+            
             for (let i = 0; i < sparklesCount; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
-
-                // Случайная позиция по всему экрану
+                
+                // Случайная позиция на экране
                 sparkle.style.left = Math.random() * 100 + 'vw';
                 sparkle.style.top = Math.random() * 100 + 'vh';
-
-                // Случайная задержка и длительность анимации
-                sparkle.style.animationDelay = Math.random() * 5 + 's';
-                sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-
+                
                 body.appendChild(sparkle);
             }
         }
-
-        createSparkles();
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', createSparkles);
     </script>
 </body>
 </html>
