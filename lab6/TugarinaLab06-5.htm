@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сенсорне зображення з довільними формами</title>
+    <title>Сенсорне зображення - Гірський пейзаж</title>
     <style>
         * {
             margin: 0;
@@ -12,215 +12,97 @@
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
             min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             width: 100%;
             text-align: center;
         }
         
         .header {
-            margin-bottom: 50px;
-            animation: fadeInDown 1s ease;
+            margin-bottom: 30px;
         }
         
         .title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #fff, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
         }
         
         .image-section {
-            margin: 40px 0;
+            margin: 30px 0;
         }
         
         .image-frame {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            border: 3px solid #ffd700;
             display: inline-block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
-        .interactive-image {
+        .mountains-image {
             max-width: 100%;
             height: auto;
-            border-radius: 15px;
-            border: 3px solid #ffd700;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            display: block;
         }
         
         .info-panel {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px auto;
-            max-width: 800px;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 700px;
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         .info-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             color: #ffd700;
         }
         
-        .shape-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        #infoDisplay {
+            font-size: 1rem;
+            line-height: 1.5;
             min-height: 60px;
-        }
-        
-        .shape-description.active {
-            opacity: 1;
-        }
-        
-        .default-message {
-            opacity: 1;
-        }
-        
-        .default-message.hidden {
-            opacity: 0;
-        }
-        
-        .coordinates-info {
-            margin-top: 30px;
-            padding: 20px;
+            padding: 15px;
+            border-radius: 5px;
             background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            text-align: left;
+            transition: all 0.3s ease;
         }
         
-        .coordinates-info h3 {
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .instructions h3 {
             color: #ffd700;
             margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .coord-item {
-            margin: 8px 0;
-            padding: 5px;
-            border-left: 3px solid #ffd700;
-            padding-left: 10px;
-        }
-        
-        /* Анимации */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Декоративные элементы */
-        .decoration {
-            position: fixed;
-            width: 150px;
-            height: 150px;
-            border: 2px solid rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            z-index: -1;
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        .decoration:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-        
-        .decoration:nth-child(2) {
-            top: 20%;
-            right: 5%;
-            animation-delay: 2s;
-        }
-        
-        .decoration:nth-child(3) {
-            bottom: 20%;
-            left: 10%;
-            animation-delay: 4s;
-        }
-        
-        .decoration:nth-child(4) {
-            bottom: 10%;
-            right: 15%;
-            animation-delay: 6s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.2rem;
-            }
-            
-            .image-frame {
-                padding: 10px;
-            }
-            
-            .info-panel {
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Декоративные элементы -->
-    <div class="decoration"></div>
-    <div class="decoration"></div>
-    <div class="decoration"></div>
-    <div class="decoration"></div>
-    
     <div class="container">
         <div class="header">
             <h1 class="title">Сенсорне зображення</h1>
@@ -229,131 +111,87 @@
         
         <div class="image-section">
             <div class="image-frame">
-                <!-- Карта изображения с областями произвольной формы -->
-                <map name="interactiveMap">
-                    <!-- Левая область - произвольная форма 1 -->
-                    <area shape="poly" coords="50,150,120,80,200,120,180,220,100,250,30,200" 
-                           href="#" alt="Гірський пейзаж" 
-                           title="Гірський пейзаж - красиві природні ландшафти">
+                <!-- Карта изображения для гор -->
+                <map name="mountainsMap">
+                    <!-- Левая гора -->
+                    <area shape="poly" coords="100,350,150,150,200,350" 
+                           href="#" alt="Ліва гора" 
+                           title="Ліва гора - висота 1500 метрів">
                     
-                    <!-- Центральная область - произвольная форма 2 -->
-                    <area shape="poly" coords="300,100,400,50,500,100,480,200,400,250,320,200" 
-                           href="#" alt="Архітектурна споруда" 
-                           title="Архітектурна споруда - витвір мистецтва та інженерії">
+                    <!-- Центральная гора -->
+                    <area shape="poly" coords="250,350,300,100,350,350" 
+                           href="#" alt="Центральна гора" 
+                           title="Центральна гора - найвища точка 2100 метрів">
                     
-                    <!-- Правая область - произвольная форма 3 -->
-                    <area shape="poly" coords="550,180,620,120,700,150,680,240,600,280,520,240" 
-                           href="#" alt="Природний об'єкт" 
-                           title="Природний об'єкт - унікальне творіння природи">
+                    <!-- Правая гора -->
+                    <area shape="poly" coords="400,350,450,200,500,350" 
+                           href="#" alt="Права гора" 
+                           title="Права гора - висота 1200 метрів">
                     
-                    <!-- Дополнительная маленькая область -->
-                    <area shape="circle" coords="750,300,40" 
-                           href="#" alt="Деталь" 
-                           title="Деталь - важлива частина композиції">
+                    <!-- Небо -->
+                    <area shape="rect" coords="50,50,550,100" 
+                           href="#" alt="Небо" 
+                           title="Чисте небо з легкими хмарами">
+                    
+                    <!-- Передний план -->
+                    <area shape="poly" coords="50,350,150,320,350,330,450,310,550,350,550,450,50,450" 
+                           href="#" alt="Долина" 
+                           title="Зелена долина з річкою">
                 </map>
                 
-                <!-- Изображение -->
-                <img src="interactive.jpg" alt="Інтерактивне зображення" usemap="#interactiveMap" class="interactive-image">
+                <!-- Изображение гор -->
+                <img src="mountains.jpg" alt="Гірський пейзаж" usemap="#mountainsMap" class="mountains-image" width="600" height="450">
             </div>
         </div>
         
         <div class="info-panel">
             <h2 class="info-title">Інформація про об'єкт</h2>
-            <div class="shape-description default-message" id="defaultMessage">
+            <div class="shape-description" id="infoDisplay">
                 Наведіть курсор на будь-який об'єкт на зображенні, щоб побачити інформацію про нього
             </div>
-            <div class="shape-description" id="mountainInfo">
-                <strong>Гірський пейзаж</strong><br>
-                Гори - це унікальні екосистеми, що формуються мільйони років. 
-                Вони впливають на клімат та є домівкою для рідкісних видів тварин і рослин.
-            </div>
-            <div class="shape-description" id="architectureInfo">
-                <strong>Архітектурна споруда</strong><br>
-                Архітектура поєднує в собі мистецтво та технології. Кожна споруда розповідає 
-                історію свого часу та культури, втілюючи ідеї та технології епохи.
-            </div>
-            <div class="shape-description" id="natureInfo">
-                <strong>Природний об'єкт</strong><br>
-                Природа створює неймовірні форми та структури. Ці об'єкти часто мають унікальні 
-                властивості та відіграють важливу роль в екосистемі нашого світу.
-            </div>
-            <div class="shape-description" id="detailInfo">
-                <strong>Деталь композиції</strong><br>
-                Деталі часто несуть найважливішу інформацію про об'єкт. Вони можуть розкривати 
-                технології виробництва, історичний контекст або художній задум автора.
-            </div>
         </div>
-        
-        <div class="coordinates-info">
-            <h3>Координати активних областей:</h3>
-            <div class="coord-item">
-                <strong>Гірський пейзаж:</strong> poly: 50,150,120,80,200,120,180,220,100,250,30,200
-            </div>
-            <div class="coord-item">
-                <strong>Архітектурна споруда:</strong> poly: 300,100,400,50,500,100,480,200,400,250,320,200
-            </div>
-            <div class="coord-item">
-                <strong>Природний об'єкт:</strong> poly: 550,180,620,120,700,150,680,240,600,280,520,240
-            </div>
-            <div class="coord-item">
-                <strong>Деталь:</strong> circle: 750,300,40
-            </div>
+
+        <div class="instructions">
+            <h3>Як працює:</h3>
+            <p>Наведіть курсор на різні частини гірського пейзажу:</p>
+            <p>• <strong>Гори</strong> - дізнайтесь про висоту та особливості</p>
+            <p>• <strong>Небо</strong> - інформація про погодні умови</p>
+            <p>• <strong>Долина</strong> - опис рослинності та ландшафту</p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const defaultMessage = document.getElementById('defaultMessage');
-            const mountainInfo = document.getElementById('mountainInfo');
-            const architectureInfo = document.getElementById('architectureInfo');
-            const natureInfo = document.getElementById('natureInfo');
-            const detailInfo = document.getElementById('detailInfo');
-            
-            const allDescriptions = [mountainInfo, architectureInfo, natureInfo, detailInfo];
-            
-            // Функция для скрытия всех описаний
-            function hideAllDescriptions() {
-                allDescriptions.forEach(desc => {
-                    desc.classList.remove('active');
-                });
-            }
-            
-            // Обработчики для областей image map
+            const infoDisplay = document.getElementById('infoDisplay');
             const areas = document.querySelectorAll('area');
             
+            // Тексты для разных областей
+            const areaTexts = {
+                'Ліва гора': 'Ліва гора - висота 1500 метрів. Складається переважно з гранітних порід. На схилах ростуть хвойні ліси.',
+                'Центральна гора': 'Центральна гора - найвища точка масиву (2100 метрів). Вершина вкрита снігом протягом більшої частини року.',
+                'Права гора': 'Права гора - висота 1200 метрів. Має пологі схили, ідеальна для туристичних маршрутів.',
+                'Небо': 'Чисте небо з легкими перистими хмарами. Видимість понад 50 км. Ідеальна погода для спостереження.',
+                'Долина': 'Зелена долина з мальовничою річкою. Багата рослинність: ялини, смереки, рідкісні альпійські квіти.'
+            };
+            
             areas.forEach(area => {
-                area.addEventListener('mouseenter', function() {
+                area.addEventListener('mouseover', function() {
+                    const title = this.getAttribute('title');
                     const alt = this.getAttribute('alt');
-                    defaultMessage.classList.add('hidden');
-                    hideAllDescriptions();
                     
-                    switch(alt) {
-                        case 'Гірський пейзаж':
-                            mountainInfo.classList.add('active');
-                            break;
-                        case 'Архітектурна споруда':
-                            architectureInfo.classList.add('active');
-                            break;
-                        case 'Природний об'єкт':
-                            natureInfo.classList.add('active');
-                            break;
-                        case 'Деталь':
-                            detailInfo.classList.add('active');
-                            break;
+                    if (areaTexts[alt]) {
+                        infoDisplay.innerHTML = `<strong>${alt}</strong><br>${areaTexts[alt]}`;
+                        infoDisplay.style.background = 'rgba(255, 215, 0, 0.2)';
+                        infoDisplay.style.border = '2px solid #ffd700';
                     }
                 });
                 
-                area.addEventListener('mouseleave', function() {
-                    hideAllDescriptions();
-                    defaultMessage.classList.remove('hidden');
+                area.addEventListener('mouseout', function() {
+                    infoDisplay.innerHTML = 'Наведіть курсор на будь-який об\'єкт на зображенні, щоб побачити інформацію про нього';
+                    infoDisplay.style.background = 'rgba(0, 0, 0, 0.2)';
+                    infoDisplay.style.border = 'none';
                 });
             });
-            
-            // Добавляем пульсацию для привлечения внимания
-            const image = document.querySelector('.interactive-image');
-            setTimeout(() => {
-                image.classList.add('pulse');
-            }, 1000);
         });
     </script>
 </body>
