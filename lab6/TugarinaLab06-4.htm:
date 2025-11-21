@@ -2,61 +2,27 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Геометричні фігури з посиланнями</title>
-    <style>
-        body {
-            background: #1e3c72;
-            color: white;
-            font-family: Arial;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #ffd700;
-        }
-        .image-box {
-            margin: 20px auto;
-            border: 3px solid #ffd700;
-            padding: 10px;
-            background: white;
-            display: inline-block;
-        }
-        .instructions {
-            margin: 20px;
-            padding: 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-    </style>
+    <title>TugarinaLab06-4</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Геометричні фігури з посиланнями</h1>
-        <p>Натисніть на різні фігури на зображенні:</p>
-        
-        <!-- Карта изображения -->
-        <map name="geometryMap">
-            <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" title="Моя Батьківщина">
-            <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" title="Спливаючі заголовки">
-            <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" title="Сенсорне зображення">
-        </map>
+    <h1>Геометричні фігури з посиланнями</h1>
+    <p>Натисніть на геометричні фігури на зображенні, щоб перейти до інших лабораторних робіт</p>
 
-        <!-- Изображение -->
-        <div class="image-box">
-            <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap" width="600" height="400">
-        </div>
+    <!-- Карта изображения -->
+    <map name="geometryMap">
+        <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" alt="Моя Батьківщина" title="Моя Батьківщина">
+        <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" alt="Спливаючі заголовки" title="Спливаючі заголовки">
+        <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" alt="Сенсорне зображення" title="Сенсорне зображення">
+    </map>
 
-        <div class="instructions">
-            <h3>Як працює:</h3>
-            <p>• Прямокутник → Моя Батьківщина (Lab06-3)</p>
-            <p>• Коло → Спливаючі заголовки (Lab06-2)</p>
-            <p>• Трикутник → Сенсорне зображення (Lab06-1)</p>
-            <p><strong>Наведіть курсор на фігури та клацніть!</strong></p>
-        </div>
-    </div>
+    <!-- Изображение -->
+    <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap" width="600" height="400">
+
+    <p>
+        <strong>Інструкція:</strong><br>
+        Прямокутник - перехід до сторінки "Моя Батьківщина" (Lab06-3)<br>
+        Коло - перехід до карти зі спливаючими заголовками (Lab06-2)<br>
+        Трикутник - перехід до сенсорного зображення (Lab06-1)
+    </p>
 </body>
 </html>
