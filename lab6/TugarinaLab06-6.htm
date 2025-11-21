@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мої друзі - одногрупники</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .friends-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .friend-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+        }
+
+        .friend-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .friend-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        .friend-info {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .interactive-map-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .map-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .image-frame {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            border: 3px solid #ffd700;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .group-photo {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .info-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 700px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        #friendInfoDisplay {
+            font-size: 1rem;
+            line-height: 1.5;
+            min-height: 60px;
+            padding: 15px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .instructions h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .friends-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Мої друзі - одногрупники</h1>
+            <p class="subtitle">Знайомтеся з моєю командою та найкращими друзями</p>
+        </div>
+
+        <div class="friends-section">
+            <div class="friend-card">
+                <img src="friend1.jpg" alt="Друг 1" class="friend-photo">
+                <h3 class="friend-name">Анна</h3>
+                <p class="friend-info">Відповідальна та творча. Захоплюється фотографією та дизайном.</p>
+            </div>
+            <div class="friend-card">
+                <img src="friend2.jpg" alt="Друг 2" class="friend-photo">
+                <h3 class="friend-name">Олексій</h3>
+                <p class="friend-info">Лідер групи. Захоплюється програмуванням та шахматами.</p>
+            </div>
+            <div class="friend-card">
+                <img src="friend3.jpg" alt="Друг 3" class="friend-photo">
+                <h3 class="friend-name">Марія</h3>
+                <p class="friend-info">Душа компанії. Любить співи та походи.</p>
+            </div>
+        </div>
+
+        <div class="interactive-map-section">
+            <h2 class="map-title">Інтерактивне групове фото</h2>
+            <div class="image-frame">
+                <!-- Карта изображения группового фото -->
+                <map name="friendsMap">
+                    <area shape="circle" coords="150,150,50" href="#" alt="Анна" title="Анна - відповідальна та творча">
+                    <area shape="circle" coords="300,150,50" href="#" alt="Олексій" title="Олексій - лідер групи">
+                    <area shape="circle" coords="450,150,50" href="#" alt="Марія" title="Марія - душа компанії">
+                </map>
+                <img src="group-photo.jpg" alt="Групповое фото" usemap="#friendsMap" class="group-photo" width="600" height="300">
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <h2 class="info-title">Інформація про друга</h2>
+            <div id="friendInfoDisplay">
+                Наведіть курсор на друга на груповому фото, щоб дізнатися більше
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Як користуватися:</h3>
+            <p>Наведіть курсор на кола на груповому фото, щоб побачити інформацію про кожного друга</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const infoDisplay = document.getElementById('friendInfoDisplay');
+            const areas = document.querySelectorAll('area');
+
+            const friendDetails = {
+                'Анна': 'Анна - 20 років. Навчається на відмінно. Захоплюється фотографією та дизайном. Мріє стати графічним дизайнером.',
+                'Олексій': 'Олексій - 21 рік. Лідер групи. Захоплюється програмуванням та шахматами. Вже має досвід роботи в IT-компанії.',
+                'Марія': 'Марія - 20 років. Душа компанії. Любить співи та походи. Активна учасниця студентського самоврядування.'
+            };
+
+            areas.forEach(area => {
+                area.addEventListener('mouseover', function() {
+                    const alt = this.getAttribute('alt');
+                    if (friendDetails[alt]) {
+                        infoDisplay.innerHTML = `<strong>${alt}</strong><br>${friendDetails[alt]}`;
+                        infoDisplay.style.background = 'rgba(255, 215, 0, 0.2)';
+                        infoDisplay.style.border = '2px solid #ffd700';
+                    }
+                });
+
+                area.addEventListener('mouseout', function() {
+                    infoDisplay.innerHTML = 'Наведіть курсор на друга на груповому фото, щоб дізнатися більше';
+                    infoDisplay.style.background = 'rgba(0, 0, 0, 0.2)';
+                    infoDisplay.style.border = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
