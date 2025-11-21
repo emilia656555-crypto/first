@@ -277,6 +277,26 @@
                 transform: translateY(-20px) rotate(180deg);
             }
         }
+        
+        /* Стили для подсказок областей */
+        .area-hint {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px dashed #ffd700;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .image-container:hover .area-hint {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -294,18 +314,28 @@
         <div class="content">
             <div class="image-section">
                 <div class="image-frame">
-                    <!-- Карта изображения -->
-                    <map name="geometryMap">
-                        <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" 
-                               alt="Полтава" title="Моя Батьківщина - Полтава">
-                        <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" 
-                               alt="Спливаючі заголовки" title="Карта зі спливаючими заголовками">
-                        <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" 
-                               alt="Сенсорне зображення" title="Сенсорне зображення">
-                    </map>
-                    
-                    <!-- Изображение -->
-                    <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap" class="geometry-image">
+                    <div class="image-container">
+                        <!-- Карта изображения с исправленными координатами -->
+                        <map name="geometryMap">
+                            <!-- Прямоугольник - левая фигура -->
+                            <area shape="rect" coords="30,80,170,220" href="TugarinaLab06-3.htm" 
+                                   alt="Полтава" title="Моя Батьківщина - Полтава">
+                            <!-- Круг - центральная фигура -->
+                            <area shape="circle" coords="300,150,70" href="TugarinaLab06-2.htm" 
+                                   alt="Спливаючі заголовки" title="Карта зі спливаючими заголовками">
+                            <!-- Треугольник - правая фигура -->
+                            <area shape="poly" coords="450,220,530,80,570,220" href="TugarinaLab06-1.htm" 
+                                   alt="Сенсорне зображення" title="Сенсорне зображення">
+                        </map>
+                        
+                        <!-- Изображение -->
+                        <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap" class="geometry-image">
+                        
+                        <!-- Визуальные подсказки областей -->
+                        <div class="area-hint" style="left: 30px; top: 80px; width: 140px; height: 140px;"></div>
+                        <div class="area-hint" style="left: 230px; top: 80px; width: 140px; height: 140px; border-radius: 50%;"></div>
+                        <div class="area-hint" style="left: 450px; top: 80px; width: 120px; height: 140px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                    </div>
                 </div>
             </div>
             
@@ -390,6 +420,22 @@
                 
                 item.addEventListener('mouseleave', function() {
                     this.style.borderLeftColor = '#ffd700';
+                });
+            });
+            
+            // Показываем области при наведении на изображение
+            const imageContainer = document.querySelector('.image-container');
+            const areaHints = document.querySelectorAll('.area-hint');
+            
+            imageContainer.addEventListener('mouseenter', function() {
+                areaHints.forEach(hint => {
+                    hint.style.opacity = '1';
+                });
+            });
+            
+            imageContainer.addEventListener('mouseleave', function() {
+                areaHints.forEach(hint => {
+                    hint.style.opacity = '0';
                 });
             });
         });
