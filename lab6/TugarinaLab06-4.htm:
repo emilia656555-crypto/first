@@ -1,28 +1,19 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>TugarinaLab06-4</title>
 </head>
 <body>
     <h1>Геометричні фігури з посиланнями</h1>
-    <p>Натисніть на геометричні фігури на зображенні, щоб перейти до інших лабораторних робіт</p>
-
-    <!-- Карта изображения -->
-    <map name="geometryMap">
-        <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" alt="Моя Батьківщина" title="Моя Батьківщина">
-        <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" alt="Спливаючі заголовки" title="Спливаючі заголовки">
-        <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" alt="Сенсорне зображення" title="Сенсорне зображення">
+    
+    <map name="map1">
+        <area shape="rect" coords="50,50,200,150" href="TugarinaLab06-3.htm" title="Полтава">
+        <area shape="circle" coords="350,100,60" href="TugarinaLab06-2.htm" title="Спливаючі заголовки">
+        <area shape="poly" coords="500,150,450,250,550,250" href="TugarinaLab06-1.htm" title="Сенсорне зображення">
     </map>
-
-    <!-- Изображение -->
-    <img src="geometry.jpg" alt="Геометричні фігури" usemap="#geometryMap" width="600" height="400">
-
-    <p>
-        <strong>Інструкція:</strong><br>
-        Прямокутник - перехід до сторінки "Моя Батьківщина" (Lab06-3)<br>
-        Коло - перехід до карти зі спливаючими заголовками (Lab06-2)<br>
-        Трикутник - перехід до сенсорного зображення (Lab06-1)
-    </p>
+    
+    <img src="geometry.jpg" width="600" height="400" border="1" usemap="#map1">
+    
+    <p>Натисніть на різні фігури на зображенні</p>
 </body>
 </html>
