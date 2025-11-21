@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мої друзі - одногрупники</title>
+    <title>Цікаві люди</title>
     <style>
         * {
             margin: 0;
@@ -41,141 +41,212 @@
             opacity: 0.9;
         }
 
-        .friends-section {
+        .people-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 40px;
         }
 
-        .friend-card {
+        .person-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             border: 2px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease;
         }
 
-        .friend-card:hover {
+        .person-card:hover {
             transform: translateY(-10px);
             border-color: #ffd700;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .friend-photo {
-            width: 150px;
-            height: 150px;
+        .person-photo {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #ffd700;
             margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .friend-name {
-            font-size: 1.5rem;
+        .person-name {
+            font-size: 1.6rem;
             margin-bottom: 10px;
             color: #ffd700;
         }
 
-        .friend-info {
+        .person-role {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .person-info {
             font-size: 1rem;
             line-height: 1.5;
         }
 
         .interactive-map-section {
             text-align: center;
-            margin: 40px 0;
+            margin: 50px 0;
         }
 
         .map-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
             color: #ffd700;
         }
 
         .image-frame {
             background: white;
-            border-radius: 10px;
-            padding: 10px;
+            border-radius: 15px;
+            padding: 15px;
             border: 3px solid #ffd700;
             display: inline-block;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
         .group-photo {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
             display: block;
         }
 
         .info-panel {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 700px;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 800px;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .info-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
             color: #ffd700;
+            text-align: center;
         }
 
-        #friendInfoDisplay {
-            font-size: 1rem;
-            line-height: 1.5;
-            min-height: 60px;
-            padding: 15px;
-            border-radius: 5px;
+        #personInfoDisplay {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            min-height: 80px;
+            padding: 20px;
+            border-radius: 10px;
             background: rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
 
         .instructions {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 30px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
+            border-left: 4px solid #ffd700;
         }
 
         .instructions h3 {
             color: #ffd700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .instructions p {
+            font-size: 1.1rem;
+            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
-            .friends-section {
+            .people-section {
                 grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Декоративные элементы */
+        .decoration {
+            position: fixed;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .decoration:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .decoration:nth-child(2) {
+            top: 20%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+        
+        .decoration:nth-child(3) {
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(180deg);
             }
         }
     </style>
 </head>
 <body>
+    <!-- Декоративные элементы -->
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+    <div class="decoration"></div>
+
     <div class="container">
         <div class="header">
-            <h1 class="title">Мої друзі - одногрупники</h1>
-            <p class="subtitle">Знайомтеся з моєю командою та найкращими друзями</p>
+            <h1 class="title">Цікаві люди</h1>
+            <p class="subtitle">Знайомтеся з видатними особистостями з різних галузей</p>
         </div>
 
-        <div class="friends-section">
-            <div class="friend-card">
-                <img src="friend1.jpg" alt="Друг 1" class="friend-photo">
-                <h3 class="friend-name">Анна</h3>
-                <p class="friend-info">Відповідальна та творча. Захоплюється фотографією та дизайном.</p>
+        <div class="people-section">
+            <div class="person-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                     alt="Марк Цукерберг" class="person-photo">
+                <h3 class="person-name">Марк Цукерберг</h3>
+                <div class="person-role">Засновник Facebook</div>
+                <p class="person-info">Американський підприємець та програміст. Створив соціальну мережу Facebook у 2004 році.</p>
             </div>
-            <div class="friend-card">
-                <img src="friend2.jpg" alt="Друг 2" class="friend-photo">
-                <h3 class="friend-name">Олексій</h3>
-                <p class="friend-info">Лідер групи. Захоплюється програмуванням та шахматами.</p>
+            <div class="person-card">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                     alt="Тейлор Свіфт" class="person-photo">
+                <h3 class="person-name">Тейлор Свіфт</h3>
+                <div class="person-role">Співачка та автор пісень</div>
+                <p class="person-info">Американська співачка, автор пісень та акторка. Відома своїми автобіографічними піснями.</p>
             </div>
-            <div class="friend-card">
-                <img src="friend3.jpg" alt="Друг 3" class="friend-photo">
-                <h3 class="friend-name">Марія</h3>
-                <p class="friend-info">Душа компанії. Любить співи та походи.</p>
+            <div class="person-card">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                     alt="Елон Маск" class="person-photo">
+                <h3 class="person-name">Елон Маск</h3>
+                <div class="person-role">Засновник Tesla та SpaceX</div>
+                <p class="person-info">Південноафриканський підприємець, інженер та мільярдер. Засновник компаній SpaceX та Tesla.</p>
             </div>
         </div>
 
@@ -183,54 +254,82 @@
             <h2 class="map-title">Інтерактивне групове фото</h2>
             <div class="image-frame">
                 <!-- Карта изображения группового фото -->
-                <map name="friendsMap">
-                    <area shape="circle" coords="150,150,50" href="#" alt="Анна" title="Анна - відповідальна та творча">
-                    <area shape="circle" coords="300,150,50" href="#" alt="Олексій" title="Олексій - лідер групи">
-                    <area shape="circle" coords="450,150,50" href="#" alt="Марія" title="Марія - душа компанії">
+                <map name="peopleMap">
+                    <area shape="circle" coords="150,180,60" href="#" alt="Марк Цукерберг" 
+                           title="Марк Цукерберг - Засновник Facebook">
+                    <area shape="circle" coords="300,180,60" href="#" alt="Тейлор Свіфт" 
+                           title="Тейлор Свіфт - Співачка та автор пісень">
+                    <area shape="circle" coords="450,180,60" href="#" alt="Елон Маск" 
+                           title="Елон Маск - Засновник Tesla та SpaceX">
                 </map>
-                <img src="group-photo.jpg" alt="Групповое фото" usemap="#friendsMap" class="group-photo" width="600" height="300">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" 
+                     alt="Групповое фото" usemap="#peopleMap" class="group-photo" width="600" height="400">
             </div>
         </div>
 
         <div class="info-panel">
-            <h2 class="info-title">Інформація про друга</h2>
-            <div id="friendInfoDisplay">
-                Наведіть курсор на друга на груповому фото, щоб дізнатися більше
+            <h2 class="info-title">Детальна інформація</h2>
+            <div id="personInfoDisplay">
+                Наведіть курсор на людину на груповому фото, щоб дізнатися більше
             </div>
         </div>
 
         <div class="instructions">
             <h3>Як користуватися:</h3>
-            <p>Наведіть курсор на кола на груповому фото, щоб побачити інформацію про кожного друга</p>
+            <p>Наведіть курсор на кола на груповому фото, щоб побачити детальну інформацію про кожну людину</p>
+            <p>Кожна картка містить основну інформацію, а при наведенні на фото ви отримаєте більше деталей</p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const infoDisplay = document.getElementById('friendInfoDisplay');
+            const infoDisplay = document.getElementById('personInfoDisplay');
             const areas = document.querySelectorAll('area');
 
-            const friendDetails = {
-                'Анна': 'Анна - 20 років. Навчається на відмінно. Захоплюється фотографією та дизайном. Мріє стати графічним дизайнером.',
-                'Олексій': 'Олексій - 21 рік. Лідер групи. Захоплюється програмуванням та шахматами. Вже має досвід роботи в IT-компанії.',
-                'Марія': 'Марія - 20 років. Душа компанії. Любить співи та походи. Активна учасниця студентського самоврядування.'
+            const personDetails = {
+                'Марк Цукерберг': 'Марк Цукерберг - американський підприємець та програміст. Народився 14 травня 1984 року. Створив соціальну мережу Facebook у 2004 році під час навчання в Гарвардському університеті. Один з наймолодших мільярдерів у світі. Активно займається благодійністю разом із дружиною Прісциллою Чан.',
+                'Тейлор Свіфт': 'Тейлор Свіфт - американська співачка, автор пісень та акторка. Народилася 13 грудня 1989 року. Відома своїми автобіографічними піснями. Володарка численних музичних нагород, включаючи 12 премій Греммі. Її творчість охоплює такі жанри як кантрі, поп, рок та альтернативна музика.',
+                'Елон Маск': 'Елон Маск - південноафриканський підприємець, інженер та мільярдер. Народився 28 червня 1971 року. Засновник компаній SpaceX, Tesla, Neuralink та The Boring Company. Мета його роботи - зробити людство мультипланетарним видом та прискорити перехід до сталої енергетики.'
             };
 
             areas.forEach(area => {
                 area.addEventListener('mouseover', function() {
                     const alt = this.getAttribute('alt');
-                    if (friendDetails[alt]) {
-                        infoDisplay.innerHTML = `<strong>${alt}</strong><br>${friendDetails[alt]}`;
+                    if (personDetails[alt]) {
+                        infoDisplay.innerHTML = `<strong>${alt}</strong><br><br>${personDetails[alt]}`;
                         infoDisplay.style.background = 'rgba(255, 215, 0, 0.2)';
                         infoDisplay.style.border = '2px solid #ffd700';
                     }
                 });
 
                 area.addEventListener('mouseout', function() {
-                    infoDisplay.innerHTML = 'Наведіть курсор на друга на груповому фото, щоб дізнатися більше';
+                    infoDisplay.innerHTML = 'Наведіть курсор на людину на груповому фото, щоб дізнатися більше';
                     infoDisplay.style.background = 'rgba(0, 0, 0, 0.2)';
                     infoDisplay.style.border = 'none';
                 });
+            });
+
+            // Добавляем анимацию при скролле
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за карточками
+            document.querySelectorAll('.person-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
             });
         });
     </script>
