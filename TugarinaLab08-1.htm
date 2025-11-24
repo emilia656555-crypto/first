@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 8, Завдання 1 - Тугаріна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(106, 27, 154, 0.1);
+            padding: 40px;
+            border: 2px solid #e1bee7;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #ba68c8;
+        }
+
+        .header h1 {
+            color: #6a1b9a;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px rgba(186, 104, 200, 0.2);
+        }
+
+        .subtitle {
+            color: #7b1fa2;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .paragraph-group {
+            margin-bottom: 30px;
+        }
+
+        .paragraph-group h2 {
+            color: #8e24aa;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #ab47bc;
+        }
+
+        /* Різні стилі для абзаців */
+        .paragraph-1 {
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+            font-weight: normal;
+            font-style: normal;
+            color: #4a148c;
+            text-decoration: none;
+            text-align: justify;
+            text-indent: 40px;
+            text-transform: none;
+            background-color: #f3e5f5;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #7b1fa2;
+        }
+
+        .paragraph-2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            color: #6a1b9a;
+            text-decoration: underline;
+            text-align: center;
+            text-indent: 0;
+            text-transform: capitalize;
+            background-color: #ede7f6;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #ba68c8;
+        }
+
+        .paragraph-3 {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            font-style: oblique;
+            color: #4a148c;
+            text-decoration: line-through;
+            text-align: right;
+            text-indent: 30px;
+            text-transform: uppercase;
+            background-color: #e8eaf6;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #9575cd;
+            line-height: 1.8;
+        }
+
+        .paragraph-4 {
+            font-family: 'Verdana', sans-serif;
+            font-size: 17px;
+            font-weight: 300;
+            font-style: normal;
+            color: #7e57c2;
+            text-decoration: overline;
+            text-align: left;
+            text-indent: 50px;
+            text-transform: lowercase;
+            background-color: #f8f6ff;
+            margin: 20px 0;
+            padding: 15px 25px;
+            border-radius: 25px;
+            border: 3px dotted #7986cb;
+        }
+
+        .style-demo {
+            background: linear-gradient(135deg, #7e57c2, #ba68c8);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(126, 87, 194, 0.3);
+        }
+
+        .style-demo h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #ba68c8;
+            color: #7b1fa2;
+            font-size: 14px;
+        }
+
+        .emoji {
+            font-size: 18px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌙 Лабораторна робота №8</h1>
+            <div class="subtitle">Тугаріна Емілія | 304-ТН | Стилізація тексту</div>
+        </div>
+
+        <div class="paragraph-group">
+            <h2>📝 Абзаци з різним форматуванням</h2>
+            
+            <p class="paragraph-1">
+                Цей абзац демонструє класичне форматування з використанням шрифту Georgia. 
+                Текст вирівняний по ширині з відступом першого рядка 40 пікселів. 
+                Колір тексту - глибокий фіолетовий, а фон має ніжний лавандовий відтінок.
+            </p>
+
+            <p class="paragraph-2">
+                цей абзац показує більш креативне форматування. текст має жирний курсив, 
+                підкреслення та трансформацію в capitalize. вирівнювання по центру та 
+                пунктирна рамка додають особливого шарму цьому абзацу.
+            </p>
+
+            <p class="paragraph-3">
+                Тут використано моноширинний шрифт Courier New з великими літерами. 
+                Текст перекреслений та вирівняний по правому краю. Фон має блакитний 
+                відтінок, що гармонійно поєднується з фіолетовою палітрою.
+            </p>
+
+            <p class="paragraph-4">
+                ЦЕЙ АБЗАЦ ІЛЮСТРУЄ ВИКОРИСТАННЯ НИЗЬКОГО РЕГІСТРУ ТА ЛІВОГО ВИРІВНЮВАННЯ. 
+                ТЕКСТ МАЄ ВЕРХНЄ ПІДКРЕСЛЕННЯ ТА ЗМІЩЕННЯ ПЕРШОГО РЯДКА. ШРИФТ VERDANA 
+                ЗАБЕЗПЕЧУЄ ЧИТАННЯ, А ТОЧКОВА РАМКА ДОДАЄ ВІЗУАЛЬНОГО ІНТЕРЕСУ.
+            </p>
+        </div>
+
+        <div class="style-demo">
+            <h3>✨ Демонстрація CSS-властивостей</h3>
+            <p>Цей блок показує використання градієнтного фону, тіней та інших стилів</p>
+        </div>
+
+        <div class="footer">
+            <span class="emoji">💜</span>
+            Виконано з використанням CSS-стилів | Лабораторна робота №8
+            <span class="emoji">🌙</span>
+        </div>
+    </div>
+</body>
+</html>
