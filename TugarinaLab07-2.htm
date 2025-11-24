@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 7, Завдання 2 - Тугаріна | Kylie Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
+            padding: 40px;
+            border: 1px solid #ffe6f2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h2 {
+            color: #ff69b4;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+            border-radius: 15px;
+            background: #fafafa;
+        }
+
+        .form-group h3 {
+            color: #ff69b4;
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"], 
+        input[type="password"],
+        select, 
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 10px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"], 
+        input[type="checkbox"] {
+            accent-color: #ff69b4;
+            transform: scale(1.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        input[type="submit"], 
+        input[type="reset"],
+        input[type="button"] {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="submit"] {
+            background: #ff69b4;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background: #ff1493;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        input[type="reset"] {
+            background: #f8f8f8;
+            color: #666;
+            border: 1px solid #e6e6e6;
+        }
+
+        input[type="button"] {
+            background: #333;
+            color: white;
+        }
+
+        .file-upload {
+            padding: 15px;
+            border: 2px dashed #e6e6e6;
+            border-radius: 10px;
+            text-align: center;
+            background: #fafafa;
+            margin: 10px 0;
+        }
+
+        .kylie-badge {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            font-size: 12px;
+            color: #ccc;
+            letter-spacing: 3px;
+            border-top: 1px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>ЗАВДАННЯ 2 - ВСІ ЕЛЕМЕНТИ ФОРМИ</h2>
+            <div class="subtitle">T U G A R I N A • E M I L I A</div>
+        </div>
+
+        <form action="success.html" method="get" target="_blank">
+            <!-- Текстові поля -->
+            <div class="form-group">
+                <h3>📝 Текстові поля</h3>
+                <label>Звичайне текстове поле</label>
+                <input type="text" name="text_field" placeholder="Введіть текст">
+                
+                <label>Поле пароля</label>
+                <input type="password" name="password" placeholder="Введіть пароль">
+            </div>
+
+            <!-- Радіокнопки -->
+            <div class="form-group">
+                <h3>🔘 Радіокнопки</h3>
+                <label>Оберіть варіант:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="option" value="1" id="opt1">
+                        <label for="opt1">Варіант 1</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="option" value="2" id="opt2">
+                        <label for="opt2">Варіант 2</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="option" value="3" id="opt3">
+                        <label for="opt3">Варіант 3</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Чекбокси -->
+            <div class="form-group">
+                <h3>✅ Чекбокси</h3>
+                <label>Оберіть інтереси:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="interest" value="music" id="music">
+                        <label for="music">Музика</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="interest" value="sports" id="sports">
+                        <label for="sports">Спорт</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="interest" value="art" id="art">
+                        <label for="art">Мистецтво</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="interest" value="tech" id="tech">
+                        <label for="tech">Технології</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Список -->
+            <div class="form-group">
+                <h3>📋 Список</h3>
+                <label>Оберіть місто:</label>
+                <select name="city">
+                    <option value="kyiv">Київ</option>
+                    <option value="lviv">Львів</option>
+                    <option value="odesa">Одеса</option>
+                    <option value="kharkiv">Харків</option>
+                    <option value="dnipro">Дніпро</option>
+                </select>
+            </div>
+
+            <!-- Текстова область -->
+            <div class="form-group">
+                <h3>📄 Текстова область</h3>
+                <label>Ваш коментар:</label>
+                <textarea name="comment" rows="4" placeholder="Напишіть ваш коментар..."></textarea>
+            </div>
+
+            <!-- Завантаження файлу -->
+            <div class="form-group">
+                <h3>📎 Завантаження файлу</h3>
+                <div class="file-upload">
+                    <label>Оберіть файл для завантаження</label>
+                    <input type="file" name="file_upload">
+                </div>
+            </div>
+
+            <!-- Різні типи кнопок -->
+            <div class="form-group">
+                <h3>🔄 Кнопки</h3>
+                <div class="buttons">
+                    <input type="button" value="Звичайна кнопка" onclick="alert('Kylie Style! 💖')">
+                    <input type="reset" value="Скинути">
+                    <input type="submit" value="Відправити">
+                </div>
+            </div>
+
+            <div class="kylie-badge">
+                K Y L I E • A E S T H E T I C
+            </div>
+        </form>
+    </div>
+</body>
+</html>
