@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 7, Завдання 4 - Тугаріна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6f0 0%, #f0e6ff 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.15);
+            padding: 40px;
+            border: 2px solid #ffe6f2;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, #ffb6c1, #dda0dd);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #ffb6c1;
+        }
+
+        .header h2 {
+            color: #ff69b4;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.3);
+        }
+
+        .subtitle {
+            color: #9370db;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #fffafa;
+            border-radius: 20px;
+            border: 1px solid #ffe6e6;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.1);
+        }
+
+        .section-title {
+            color: #ff69b4;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '🛍️';
+            font-size: 18px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d87093;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #ffd1dc;
+            border-radius: 15px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #fff5f7;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            background: #ffe6ee;
+            transform: translateY(-2px);
+        }
+
+        input[type="radio"], 
+        input[type="checkbox"] {
+            accent-color: #ff69b4;
+            transform: scale(1.3);
+        }
+
+        /* Стиль для списка товаров з multiple */
+        select[multiple] {
+            height: 150px;
+            padding: 15px;
+        }
+
+        select[multiple] option {
+            padding: 10px;
+            margin: 5px 0;
+            background: #fff5f7;
+            border-radius: 8px;
+            border: 1px solid #ffd1dc;
+            transition: all 0.3s ease;
+        }
+
+        select[multiple] option:hover {
+            background: #ffe6ee;
+            transform: translateX(5px);
+        }
+
+        select[multiple] option:checked {
+            background: #ff69b4;
+            color: white;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        input[type="submit"], 
+        input[type="reset"] {
+            padding: 16px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        input[type="reset"] {
+            background: linear-gradient(135deg, #9370db, #8a2be2);
+            color: white;
+        }
+
+        input[type="reset"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(147, 112, 219, 0.4);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .product-item {
+            padding: 15px;
+            background: #fff5f7;
+            border-radius: 15px;
+            border: 2px solid #ffd1dc;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            border-color: #ff69b4;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+        }
+
+        .product-item img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .cute-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #ffb6c1;
+            color: #d87093;
+            font-size: 14px;
+        }
+
+        .emoji {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+
+        .price-tag {
+            background: #ff69b4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>ФОРМА ЗАМОВЛЕННЯ ТОВАРІВ 🛒</h2>
+            <div class="subtitle">Тугаріна Емілія | 304-ТН</div>
+        </div>
+
+        <form action="success.html" method="get" target="_blank">
+            <!-- Банківська інформація -->
+            <div class="form-section">
+                <div class="section-title">Банківська інформація</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Номер банківського рахунку 💳</label>
+                        <input type="text" name="account_number" placeholder="XXXX XXXX XXXX XXXX" required pattern="[0-9\s]{16,19}">
+                    </div>
+                    <div class="form-group">
+                        <label>Особистий номер користувача 🔐</label>
+                        <input type="text" name="user_id" placeholder="Введіть ваш ID" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вибір товарів -->
+            <div class="form-section">
+                <div class="section-title">Вибір товарів</div>
+                
+                <div class="form-group">
+                    <label>Оберіть товари (можна вибрати декілька) 🎁</label>
+                    <select name="products" multiple size="6">
+                        <option value="laptop">💻 Ноутбук - 25,000 грн</option>
+                        <option value="phone">📱 Смартфон - 15,000 грн</option>
+                        <option value="tablet">📊 Планшет - 12,000 грн</option>
+                        <option value="headphones">🎧 Навушники - 2,500 грн</option>
+                        <option value="camera">📷 Камера - 8,000 грн</option>
+                        <option value="smartwatch">⌚ Смарт-годинник - 5,000 грн</option>
+                    </select>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-item">
+                        <div>💻</div>
+                        <strong>Ноутбук</strong>
+                        <div class="price-tag">25,000 грн</div>
+                    </div>
+                    <div class="product-item">
+                        <div>📱</div>
+                        <strong>Смартфон</strong>
+                        <div class="price-tag">15,000 грн</div>
+                    </div>
+                    <div class="product-item">
+                        <div>📊</div>
+                        <strong>Планшет</strong>
+                        <div class="price-tag">12,000 грн</div>
+                    </div>
+                    <div class="product-item">
+                        <div>🎧</div>
+                        <strong>Навушники</strong>
+                        <div class="price-tag">2,500 грн</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Спосіб оплати -->
+            <div class="form-section">
+                <div class="section-title">Спосіб оплати</div>
+                
+                <div class="form-group">
+                    <label>Оберіть спосіб оплати 💰</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="payment" value="cash" id="cash" required>
+                            <label for="cash">Готівковий розрахунок</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="payment" value="card" id="card">
+                            <label for="card">Безготівковий розрахунок</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Додаткова інформація -->
+            <div class="form-section">
+                <div class="section-title">Додаткова інформація</div>
+                
+                <div class="form-group">
+                    <label>Коментар до замовлення 💬</label>
+                    <textarea name="comments" rows="4" placeholder="Ваші побажання щодо замовлення..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Додаткова інформація для отримання 📨</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="info_type" value="balance" id="balance">
+                            <label for="balance">Дані про залишки на рахунку</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="info_type" value="payments" id="payments">
+                            <label for="payments">Список останніх виплат по рахунку</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <input type="reset" value="Очистити форму 🗑️">
+                <input type="submit" value="Підтвердити замовлення 💖">
+            </div>
+
+            <div class="cute-footer">
+                <span class="emoji">🌸</span>
+                Лабораторна робота №7 | Форма замовлення товарів 
+                <span class="emoji">💕</span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Додаємо інтерактивності для вибору товарів
+        document.addEventListener('DOMContentLoaded', function() {
+            const productSelect = document.querySelector('select[name="products"]');
+            const productItems = document.querySelectorAll('.product-item');
+            
+            productItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const productText = this.querySelector('strong').textContent;
+                    const option = Array.from(productSelect.options).find(opt => opt.text.includes(productText));
+                    
+                    if (option) {
+                        option.selected = !option.selected;
+                        this.classList.toggle('selected');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
