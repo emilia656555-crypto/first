@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Лабораторна робота 7, Завдання 2 - Тугаріна | Kylie Style</title>
+    <title>Лабораторна робота 7, Завдання 2 - Тугаріна</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #f8f0ff 100%);
             min-height: 100vh;
             padding: 40px 20px;
         }
@@ -21,10 +21,10 @@
             max-width: 700px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            border: 1px solid #ffe6f2;
+            border: 1px solid #f0f0f0;
         }
 
         .header {
@@ -33,27 +33,31 @@
         }
 
         .header h2 {
-            color: #ff69b4;
+            color: #6a5acd;
             font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-weight: 400;
             margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            font-weight: 300;
         }
 
         .form-group {
             margin-bottom: 25px;
             padding: 20px;
             border: 1px solid #f0f0f0;
-            border-radius: 15px;
+            border-radius: 12px;
             background: #fafafa;
         }
 
         .form-group h3 {
-            color: #ff69b4;
+            color: #6a5acd;
             font-size: 16px;
             margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         label {
@@ -70,8 +74,8 @@
         textarea {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #e6e6e6;
-            border-radius: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             font-size: 14px;
             transition: all 0.3s ease;
             background: white;
@@ -80,8 +84,8 @@
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #ff69b4;
-            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
+            border-color: #6a5acd;
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.1);
         }
 
         .radio-group, .checkbox-group {
@@ -98,8 +102,7 @@
 
         input[type="radio"], 
         input[type="checkbox"] {
-            accent-color: #ff69b4;
-            transform: scale(1.1);
+            accent-color: #6a5acd;
         }
 
         .buttons {
@@ -112,32 +115,29 @@
         input[type="reset"],
         input[type="button"] {
             flex: 1;
-            padding: 15px;
+            padding: 14px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         input[type="submit"] {
-            background: #ff69b4;
+            background: #6a5acd;
             color: white;
         }
 
         input[type="submit"]:hover {
-            background: #ff1493;
+            background: #5a4abc;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
         }
 
         input[type="reset"] {
             background: #f8f8f8;
             color: #666;
-            border: 1px solid #e6e6e6;
+            border: 1px solid #ddd;
         }
 
         input[type="button"] {
@@ -147,20 +147,19 @@
 
         .file-upload {
             padding: 15px;
-            border: 2px dashed #e6e6e6;
-            border-radius: 10px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
             text-align: center;
             background: #fafafa;
             margin: 10px 0;
         }
 
-        .kylie-badge {
+        .signature {
             text-align: center;
             margin-top: 40px;
             padding: 15px;
             font-size: 12px;
             color: #ccc;
-            letter-spacing: 3px;
             border-top: 1px solid #f0f0f0;
         }
     </style>
@@ -168,14 +167,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>ЗАВДАННЯ 2 - ВСІ ЕЛЕМЕНТИ ФОРМИ</h2>
-            <div class="subtitle">T U G A R I N A • E M I L I A</div>
+            <h2>ФОРМА З УСІМА ЕЛЕМЕНТАМИ</h2>
+            <div class="subtitle">Тугаріна Емілія, група 304-ТН</div>
         </div>
 
         <form action="success.html" method="get" target="_blank">
             <!-- Текстові поля -->
             <div class="form-group">
-                <h3>📝 Текстові поля</h3>
+                <h3>Текстові поля</h3>
                 <label>Звичайне текстове поле</label>
                 <input type="text" name="text_field" placeholder="Введіть текст">
                 
@@ -185,7 +184,7 @@
 
             <!-- Радіокнопки -->
             <div class="form-group">
-                <h3>🔘 Радіокнопки</h3>
+                <h3>Радіокнопки</h3>
                 <label>Оберіть варіант:</label>
                 <div class="radio-group">
                     <div class="radio-item">
@@ -205,7 +204,7 @@
 
             <!-- Чекбокси -->
             <div class="form-group">
-                <h3>✅ Чекбокси</h3>
+                <h3>Чекбокси</h3>
                 <label>Оберіть інтереси:</label>
                 <div class="checkbox-group">
                     <div class="checkbox-item">
@@ -220,54 +219,45 @@
                         <input type="checkbox" name="interest" value="art" id="art">
                         <label for="art">Мистецтво</label>
                     </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" name="interest" value="tech" id="tech">
-                        <label for="tech">Технології</label>
-                    </div>
                 </div>
             </div>
 
             <!-- Список -->
             <div class="form-group">
-                <h3>📋 Список</h3>
+                <h3>Список</h3>
                 <label>Оберіть місто:</label>
                 <select name="city">
                     <option value="kyiv">Київ</option>
                     <option value="lviv">Львів</option>
                     <option value="odesa">Одеса</option>
-                    <option value="kharkiv">Харків</option>
-                    <option value="dnipro">Дніпро</option>
                 </select>
             </div>
 
             <!-- Текстова область -->
             <div class="form-group">
-                <h3>📄 Текстова область</h3>
+                <h3>Текстова область</h3>
                 <label>Ваш коментар:</label>
                 <textarea name="comment" rows="4" placeholder="Напишіть ваш коментар..."></textarea>
             </div>
 
             <!-- Завантаження файлу -->
             <div class="form-group">
-                <h3>📎 Завантаження файлу</h3>
+                <h3>Завантаження файлу</h3>
                 <div class="file-upload">
                     <label>Оберіть файл для завантаження</label>
                     <input type="file" name="file_upload">
                 </div>
             </div>
 
-            <!-- Різні типи кнопок -->
-            <div class="form-group">
-                <h3>🔄 Кнопки</h3>
-                <div class="buttons">
-                    <input type="button" value="Звичайна кнопка" onclick="alert('Kylie Style! 💖')">
-                    <input type="reset" value="Скинути">
-                    <input type="submit" value="Відправити">
-                </div>
+            <!-- Кнопки -->
+            <div class="buttons">
+                <input type="button" value="Перевірити" onclick="alert('Форма готова до відправки!')">
+                <input type="reset" value="Очистити">
+                <input type="submit" value="Надіслати">
             </div>
 
-            <div class="kylie-badge">
-                K Y L I E • A E S T H E T I C
+            <div class="signature">
+                Лабораторна робота №7 | Форми HTML
             </div>
         </form>
     </div>
