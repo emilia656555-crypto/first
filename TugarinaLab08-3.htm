@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 8, Завдання 3 - Тугаріна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ba68c8" opacity="0.3"/></svg>');
+            background-size: 200px 200px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(106, 27, 154, 0.15);
+            padding: 50px;
+            border: 3px solid #e1bee7;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, #7e57c2, #ba68c8);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 25px;
+            border-bottom: 3px dashed #ba68c8;
+        }
+
+        .main-title {
+            font-weight: bold;
+            color: #8b0000; /* темно-красный */
+            font-size: 35pt;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px rgba(139, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: #7b1fa2;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Навигация по странице */
+        .navigation {
+            background: linear-gradient(135deg, #ede7f6, #d1c4e9);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 2px solid #ba68c8;
+        }
+
+        .navigation h2 {
+            color: #4a148c;
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #7b1fa2;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            background: #7b1fa2;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(123, 31, 162, 0.3);
+        }
+
+        /* Стили для разделов с цветами */
+        .flower-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-radius: 25px;
+            border-left: 6px solid #8e24aa;
+            position: relative;
+        }
+
+        .flower-section::before {
+            content: '🌸';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            font-size: 24px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            border: 2px solid #ba68c8;
+        }
+
+        .flower-title {
+            font-weight: bold;
+            color: #8e24aa; /* фиолетовый */
+            font-size: 20pt;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .flower-title::before {
+            content: '💮';
+            font-size: 24px;
+        }
+
+        .flower-content {
+            color: #000000; /* черный */
+            font-style: italic;
+            font-size: 14pt;
+            text-indent: 2%;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .flower-image {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            font-size: 48px;
+        }
+
+        .back-to-top {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-to-top a {
+            color: #7b1fa2;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 25px;
+            background: white;
+            border-radius: 25px;
+            border: 2px solid #ba68c8;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-to-top a:hover {
+            background: #7b1fa2;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 3px dashed #ba68c8;
+            color: #7b1fa2;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .emoji {
+            font-size: 20px;
+            margin: 0 8px;
+        }
+
+        /* Декоративные элементы */
+        .decoration {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 32px;
+            color: #ba68c8;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Багаторічні Садові Квіти</h1>
+            <div class="subtitle">Тугаріна Емілія | 304-ТН | Лабораторна робота №8</div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="navigation">
+            <h2>🌿 Зміст</h2>
+            <div class="nav-links">
+                <a href="#rose">Троянди</a>
+                <a href="#lily">Лілії</a>
+                <a href="#peony">Півонії</a>
+                <a href="#iris">Іриси</a>
+                <a href="#lavender">Лаванда</a>
+            </div>
+        </div>
+
+        <div class="decoration">🌷 ✨ 🌸 ✨ 🌹 ✨ 💮 ✨ 🌺</div>
+
+        <!-- Раздел 1 - Троянды -->
+        <div class="flower-section" id="rose">
+            <h2 class="flower-title">Троянди</h2>
+            <div class="flower-image">🌹</div>
+            <div class="flower-content">
+                Троянди - це одні з найпопулярніших багаторічних квітів у садах по всьому світу. 
+                Вони відомі своєю красою, ароматом та різноманіттям кольорів і форм. 
+                Троянди вимагають сонячного місця та добре дренованої ґрунту. 
+                Регулярне підрізання сприяє кращому цвітінню та здоровому росту. 
+                Ці квіти символізують любов, красу та досконалість.
+            </div>
+            <div class="back-to-top">
+                <a href="#"><span>↑</span> Повернутися до змісту</a>
+            </div>
+        </div>
+
+        <!-- Раздел 2 - Лілії -->
+        <div class="flower-section" id="lily">
+            <h2 class="flower-title">Лілії</h2>
+            <div class="flower-image">🌸</div>
+            <div class="flower-content">
+                Лілії вражають своєю елегантністю та інтенсивним ароматом. 
+                Вони мають великі, яскраві квіти різних кольорів - від білого до яскраво-рожевого та помаранчевого. 
+                Лілії добре ростуть у півтіні та потребують вологого, але добре дренованого ґрунту. 
+                Ці квіти часто асоціюються з чистотою, благородством та відродженням.
+            </div>
+            <div class="back-to-top">
+                <a href="#"><span>↑</span> Повернутися до змісту</a>
+            </div>
+        </div>
+
+        <!-- Раздел 3 - Півонії -->
+        <div class="flower-section" id="peony">
+            <h2 class="flower-title">Півонії</h2>
+            <div class="flower-image">💮</div>
+            <div class="flower-content">
+                Півонії - це розкішні квіти з великими, пухнастими бутонами. 
+                Вони цвітуть на початку літа і можуть жити десятиліттями при правильному догляді. 
+                Півонії віддають перевагу сонячним місцям із захистом від сильного вітру. 
+                Вони символізують процвітання, удачу та щасливий шлюб у багатьох культурах.
+            </div>
+            <div class="back-to-top">
+                <a href="#"><span>↑</span> Повернутися до змісту</a>
+            </div>
+        </div>
+
+        <!-- Раздел 4 - Іриси -->
+        <div class="flower-section" id="iris">
+            <h2 class="flower-title">Іриси</h2>
+            <div class="flower-image">🌺</div>
+            <div class="flower-content">
+                Іриси мають унікальну форму квіток та вражаючу кольорову гаму. 
+                Вони названі на честь грецької богині веселки через свою різноманітність кольорів. 
+                Іриси добре адаптуються до різних умов, але віддають перевагу сонячним місцям. 
+                Ці квіти символізують мудрість, надію та довіру.
+            </div>
+            <div class="back-to-top">
+                <a href="#"><span>↑</span> Повернутися до змісту</a>
+            </div>
+        </div>
+
+        <!-- Раздел 5 - Лаванда -->
+        <div class="flower-section" id="lavender">
+            <h2 class="flower-title">Лаванда</h2>
+            <div class="flower-image">🌿</div>
+            <div class="flower-content">
+                Лаванда - це не лише красива, але й корисна рослина з чарівним ароматом. 
+                Вона має фіолетові суцвіття та сріблясто-зелене листя. Лаванда полюбляє сонячні місця 
+                та добре дренований ґрунт. Її використовують в ароматерапії, кулінарії та як природний 
+                засіб від комах. Лаванда символізує спокій, чистоту та тишу.
+            </div>
+            <div class="back-to-top">
+                <a href="#"><span>↑</span> Повернутися до змісту</a>
+            </div>
+        </div>
+
+        <div class="decoration">✨ 🌼 ✨ 🌻 ✨ 🏵️ ✨ 💐 ✨</div>
+
+        <div class="footer">
+            <span class="emoji">💜</span>
+            Багаторічні садові квіти | Лабораторна робота №8
+            <span class="emoji">🌙</span>
+        </div>
+    </div>
+</body>
+</html>
