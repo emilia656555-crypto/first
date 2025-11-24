@@ -1,45 +1,249 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Лабораторна робота 7, Завдання 1 - Тугаріна</title>
+    <title>Лабораторна робота 7 - Тугаріна | Kylie Style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
+            padding: 40px;
+            border: 1px solid #ffe6f2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            color: #ff69b4;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"], 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input[type="text"]:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.1);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"], 
+        input[type="checkbox"] {
+            accent-color: #ff69b4;
+            transform: scale(1.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        input[type="submit"], 
+        input[type="reset"] {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="submit"] {
+            background: #ff69b4;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background: #ff1493;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        input[type="reset"] {
+            background: #f8f8f8;
+            color: #666;
+            border: 1px solid #e6e6e6;
+        }
+
+        input[type="reset"]:hover {
+            background: #eee;
+            transform: translateY(-2px);
+        }
+
+        .file-upload {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed #e6e6e6;
+            border-radius: 10px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .file-upload label {
+            color: #ff69b4;
+            cursor: pointer;
+        }
+
+        .kylie-badge {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            font-size: 12px;
+            color: #ccc;
+            letter-spacing: 2px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Анкета студента Тугаріної</h2>
+    <div class="container">
+        <div class="header">
+            <h2>АНКЕТА СТУДЕНТА</h2>
+            <div class="subtitle">T U G A R I N A • E M I L I A</div>
+        </div>
 
-    <form action="success.html" method="get" target="_blank">
-        <pre>
-Ваше ім'я: <input name="name" type="text" maxlength="40" size="40" value="">
+        <form action="success.html" method="get" target="_blank">
+            <div class="form-group">
+                <label>Ваше ім'я</label>
+                <input type="text" name="name" maxlength="40" placeholder="Введіть ваше ім'я">
+            </div>
 
-Ваша стать: <input type="radio" name="pol" value="male">Чоловіча
-            <input type="radio" name="pol" value="female">Жіноча
+            <div class="form-group">
+                <label>Ваша стать</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="pol" value="male" id="male">
+                        <label for="male">Чоловіча</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="pol" value="female" id="female">
+                        <label for="female">Жіноча</label>
+                    </div>
+                </div>
+            </div>
 
-На якому курсі Ви навчаєтесь?
-<select name="curs" size="1">
-    <option value="1" selected> Перший </option>
-    <option value="2">Другий</option>
-    <option value="3">Третій</option>
-    <option value="4">Четвертий</option>
-    <option value="5">П'ятий </option>
-</select>
+            <div class="form-group">
+                <label>На якому курсі Ви навчаєтесь?</label>
+                <select name="curs">
+                    <option value="1" selected>Перший курс</option>
+                    <option value="2">Другий курс</option>
+                    <option value="3">Третій курс</option>
+                    <option value="4">Четвертий курс</option>
+                    <option value="5">П'ятий курс</option>
+                </select>
+            </div>
 
-Які дисципліни ви вивчаєте на курсі?
-<input type="checkbox" name="web" value="yes" checked> WEB-програмування
-<input type="checkbox" name="eldinam" value="yes"> Технічна електродинаміка
-<input type="checkbox" name="math" value="yes"> Вища математика
-<input type="checkbox" name="physics" value="yes"> Фізика
+            <div class="form-group">
+                <label>Оберіть дисципліни:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="web" value="yes" id="web" checked>
+                        <label for="web">WEB-програмування</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="eldinam" value="yes" id="eldinam">
+                        <label for="eldinam">Технічна електродинаміка</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="math" value="yes" id="math">
+                        <label for="math">Вища математика</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="physics" value="yes" id="physics">
+                        <label for="physics">Фізика</label>
+                    </div>
+                </div>
+            </div>
 
-Напишіть декілька слів про себе:
-        </pre>
+            <div class="form-group">
+                <label>Розкажіть про себе</label>
+                <textarea name="about" rows="4" placeholder="Ваші інтереси, захоплення, цілі..."></textarea>
+            </div>
 
-        <textarea name="about" rows="6" cols="60" wrap="off"></textarea>
+            <div class="file-upload">
+                <label>Додати файл →</label>
+                <input type="file" name="friend">
+            </div>
 
-        <p>
-            <input type="submit" value="Відіслати дані">
-            <input type="reset" value="Очистити форму">
-            <br><br>
-            Додати файл: <input type="file" name="friend" size="50">
-        </p>
-    </form>
+            <div class="buttons">
+                <input type="reset" value="Очистити">
+                <input type="submit" value="Відправити">
+            </div>
+
+            <div class="kylie-badge">
+                KYLIE COSMETICS STYLE
+            </div>
+        </form>
+    </div>
 </body>
 </html>
