@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 8, Завдання 2 - Тугаріна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(106, 27, 154, 0.15);
+            padding: 50px;
+            border: 3px solid #e1bee7;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 25px;
+            border-bottom: 3px dashed #ba68c8;
+        }
+
+        .header h1 {
+            color: #6a1b9a;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px rgba(186, 104, 200, 0.2);
+        }
+
+        .subtitle {
+            color: #7b1fa2;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Стилі для різних розділів */
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2);
+        }
+
+        .section-1 {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            border-left: 6px solid #8e24aa;
+        }
+
+        .section-2 {
+            background: linear-gradient(135deg, #ede7f6, #d1c4e9);
+            border-left: 6px solid #7b1fa2;
+        }
+
+        .section-3 {
+            background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+            border-left: 6px solid #5c6bc0;
+        }
+
+        .section h2 {
+            color: #4a148c;
+            font-size: 28px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h2::before {
+            content: '💫';
+            font-size: 24px;
+        }
+
+        .paragraph {
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .paragraph-important {
+            background: linear-gradient(135deg, #ffebee, #fce4ec);
+            border: 2px solid #f8bbd9;
+            color: #880e4f;
+            font-weight: 600;
+        }
+
+        .paragraph-code {
+            background: #2c003e;
+            color: #e1bee7;
+            font-family: 'Courier New', monospace;
+            border: 2px solid #7b1fa2;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #7e57c2, #ba68c8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(126, 87, 194, 0.4);
+        }
+
+        .highlight h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 3px dashed #ba68c8;
+            color: #7b1fa2;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .emoji {
+            font-size: 20px;
+            margin: 0 8px;
+        }
+
+        /* Уніфіковані стилі для всіх елементів */
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4a148c;
+            text-align: justify;
+            margin: 15px 0;
+        }
+
+        div {
+            transition: all 0.3s ease;
+        }
+
+        .special-text {
+            font-style: italic;
+            color: #7b1fa2;
+            font-weight: 600;
+            background: rgba(186, 104, 200, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌙 Лабораторна робота №8 - Завдання 2</h1>
+            <div class="subtitle">Тугаріна Емілія | 304-ТН | Глобальні таблиці стилів</div>
+        </div>
+
+        <!-- Розділ 1 -->
+        <div class="section section-1">
+            <h2>Розділ 1: Вступ до CSS</h2>
+            
+            <div class="paragraph">
+                <p>CSS (Cascading Style Sheets) - це мова стилів, яка використовується для опису вигляду документа, написаного мовою розмітки. Вона дозволяє розділити контент та його представлення, що робить веб-розробку більш ефективною та гнучкою.</p>
+                
+                <p class="paragraph-important">За допомогою глобальних таблиць стилів ми можемо забезпечити єдність оформлення всіх елементів на сторінці. Це значно спрощує підтримку та оновлення дизайну.</p>
+            </div>
+        </div>
+
+        <!-- Розділ 2 -->
+        <div class="section section-2">
+            <h2>Розділ 2: Переваги CSS</h2>
+            
+            <div class="paragraph">
+                <p>Використання CSS має численні переваги. По-перше, це значно зменшує обсяг коду в порівнянні з inline-стилями. По-друге, дозволяє легко змінювати дизайн всієї сторінки або навіть цілого сайту, змінюючи лише один файл.</p>
+                
+                <p>Крім того, CSS надає розробникам потужні інструменти для створення сучасних, адаптивних дизайнів, які чудово виглядають на будь-яких пристроях.</p>
+            </div>
+        </div>
+
+        <!-- Розділ 3 -->
+        <div class="section section-3">
+            <h2>Розділ 3: Практичне застосування</h2>
+            
+            <div class="paragraph">
+                <p>У цій лабораторній роботі ми використовуємо глобальні таблиці стилів для забезпечення єдності оформлення. Всі розділи, абзаци та інші елементи мають узгоджені кольори, шрифти та відступи.</p>
+                
+                <p class="paragraph-code">/* Приклад CSS-коду */<br>
+                .section {<br>
+                &nbsp;&nbsp;margin: 40px 0;<br>
+                &nbsp;&nbsp;padding: 30px;<br>
+                &nbsp;&nbsp;border-radius: 20px;<br>
+                }</p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>✨ Уніфікований дизайн</h3>
+            <p>Завдяки використанню глобальних стилів, всі елементи на цій сторінці мають <span class="special-text">узгоджене оформлення</span> у фіолетовій кольоровій гамі з сучасними ефектами та анімаціями.</p>
+        </div>
+
+        <div class="footer">
+            <span class="emoji">💜</span>
+            Виконано з використанням глобальних CSS-стилів | Лабораторна робота №8
+            <span class="emoji">🌙</span>
+        </div>
+    </div>
+</body>
+</html>
