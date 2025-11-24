@@ -1,22 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Дякуємо!</title>
+    <title>Дякуємо! | Kylie Style</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
         body {
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .success-card {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
             text-align: center;
-            background-color: #f0f8ff;
-            padding: 50px;
+            max-width: 500px;
+            border: 1px solid #ffe6f2;
         }
         h2 {
             color: #ff69b4;
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .emoji {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .signature {
+            color: #ccc;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <h2>💖 Ваша форма прийнята до обробки. Дякуємо за увагу! 💖</h2>
-    <p>Тугаріна! 😘</p>
+    <div class="success-card">
+        <div class="emoji">💖</div>
+        <h2>ДЯКУЄМО</h2>
+        <p>Ваша форма прийнята до обробки.<br>Ми зв'яжемося з вами найближчим часом.</p>
+        <div class="signature">TUGA RINA • EMILIA</div>
+    </div>
 </body>
 </html>
