@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid верстка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0fff0;
+        }
+
+        .wrapper {
+            margin: 3px;
+            background: white;
+            min-height: 100vh;
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "left content right"
+                "footer footer footer";
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 3px;
+        }
+
+        .header {
+            grid-area: header;
+            background: #8ca0ff;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .sidebar {
+            background: #ff8c8c;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .sidebar.left {
+            grid-area: left;
+        }
+
+        .content {
+            grid-area: content;
+            background: #ffff64;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .sidebar.right {
+            grid-area: right;
+            background: #ff8c8c;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .footer {
+            grid-area: footer;
+            background: #8cff8c;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Адаптивність для телефонів */
+        @media (max-width: 500px) {
+            .wrapper {
+                grid-template-areas: 
+                    "header"
+                    "left"
+                    "content"
+                    "right"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto auto;
+            }
+        }
+
+        /* Для планшетів */
+        @media (min-width: 500px) and (max-width: 749px) {
+            .wrapper {
+                grid-template-areas: 
+                    "header header"
+                    "left content"
+                    "right right"
+                    "footer footer";
+                grid-template-columns: 1fr 2fr;
+                grid-template-rows: auto 1fr auto auto;
+            }
+        }
+
+        /* Для більших екранів */
+        @media (min-width: 750px) and (max-width: 949px) {
+            .wrapper {
+                grid-template-columns: 1fr 3fr 1fr;
+            }
+        }
+
+        /* Для дуже великих екранів */
+        @media (min-width: 1200px) {
+            .wrapper {
+                max-width: 1200px;
+                margin: 0 auto;
+                grid-template-columns: 1fr 2fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>🔲 Grid верстка</h1>
+            <p>Це сторінка з використанням CSS Grid для розмітки</p>
+        </header>
+        
+        <aside class="sidebar left">
+            <h3>Ліва панель</h3>
+            <p>Grid - найпотужніша технологія!</p>
+        </aside>
+        
+        <main class="content">
+            <h2>Основний контент</h2>
+            <p>CSS Grid дозволяє створювати складні макети з двовимірним розташуванням!</p>
+            <p>Це як таблиця, але на сучасний лад! 💫</p>
+        </main>
+        
+        <aside class="sidebar right">
+            <h3>Права панель</h3>
+            <p>Grid - це майбутнє верстки!</p>
+        </aside>
+        
+        <footer class="footer">
+            <p>Grid верстка - лабораторна робота 10</p>
+        </footer>
+    </div>
+</body>
+</html>
