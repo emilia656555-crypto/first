@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox верстка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff0f5;
+        }
+
+        .wrapper {
+            margin: 3px;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #8ca0ff;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 3px;
+            flex: 1;
+        }
+
+        .sidebar {
+            background: #ff8c8c;
+            border: 1px solid #ddd;
+            padding: 20px;
+            flex: 0 0 25%;
+        }
+
+        .content {
+            background: #ffff64;
+            border: 1px solid #ddd;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .sidebar.right {
+            background: #ff8c8c;
+            border: 1px solid #ddd;
+            padding: 20px;
+            flex: 0 0 25%;
+        }
+
+        .footer {
+            background: #8cff8c;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Адаптивність для телефонів */
+        @media (max-width: 500px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar, .sidebar.right {
+                flex: 0 0 auto;
+            }
+        }
+
+        /* Для планшетів */
+        @media (min-width: 500px) and (max-width: 749px) {
+            .sidebar, .sidebar.right {
+                flex: 0 0 30%;
+            }
+        }
+
+        /* Для більших екранів */
+        @media (min-width: 750px) and (max-width: 949px) {
+            .sidebar, .sidebar.right {
+                flex: 0 0 25%;
+            }
+        }
+
+        /* Для дуже великих екранів */
+        @media (min-width: 1200px) {
+            .wrapper {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .sidebar, .sidebar.right {
+                flex: 0 0 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>🎪 Flexbox верстка</h1>
+            <p>Це сторінка з використанням Flexbox для розмітки</p>
+        </header>
+        
+        <div class="main-container">
+            <aside class="sidebar">
+                <h3>Ліва панель</h3>
+                <p>Flexbox - сучасна технологія!</p>
+            </aside>
+            
+            <main class="content">
+                <h2>Основний контент</h2>
+                <p>Flexbox дозволяє легко створювати гнучкі макети!</p>
+                <p>Елементи самі підлаштовуються під доступний простір! ✨</p>
+            </main>
+            
+            <aside class="sidebar right">
+                <h3>Права панель</h3>
+                <p>Flexbox - це круто і просто!</p>
+            </aside>
+        </div>
+        
+        <footer class="footer">
+            <p>Flexbox верстка - лабораторна робота 10</p>
+        </footer>
+    </div>
+</body>
+</html>
