@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна 10 - Веб-дизайн</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #ff6b88;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 20px;
+            background: #a0e7e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background: #88d1cf;
+            transform: translateY(-5px);
+            border-color: #ff6b88;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 Лабораторна робота 10 🌸</h1>
+        <div class="menu">
+            <a href="float.html" class="menu-item">
+                <span class="emoji">🌊</span>
+                Float верстка
+            </a>
+            <a href="flexbox.html" class="menu-item">
+                <span class="emoji">🎪</span>
+                Flexbox верстка
+            </a>
+            <a href="grid.html" class="menu-item">
+                <span class="emoji">🔲</span>
+                Grid верстка
+            </a>
+        </div>
+    </div>
+</body>
+</html>
