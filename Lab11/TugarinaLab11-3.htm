@@ -4,7 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сторінка 3 - Лабораторна №11</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: italic;
+            font-size: 17px;
+            background: 
+                linear-gradient(135deg, rgba(255, 182, 193, 0.9) 0%, rgba(255, 105, 180, 0.8) 50%, rgba(255, 192, 203, 0.9) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><filter id="a"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" stitchTiles="stitch"/></filter><rect width="400" height="400" filter="url(%23a)" opacity="0.2"/></svg>');
+            margin-left: 8%;
+            margin-right: 8%;
+            line-height: 1.7;
+            color: #5d4e75;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        p {
+            text-align: justify;
+            text-indent: 35px;
+            margin-bottom: 20px;
+            color: #6b5b7a;
+        }
+
+        h1 {
+            font-weight: bold;
+            text-align: center;
+            color: #8b5a7c;
+            font-style: normal;
+            font-size: 2.8em;
+            margin: 25px 0;
+            text-shadow: 2px 2px 4px rgba(139, 90, 124, 0.2);
+            background: linear-gradient(135deg, #f8c8dc, #f4acb6);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        h2 {
+            color: #9d7bb5;
+            font-style: normal;
+            border-bottom: 3px solid #d8a7ca;
+            padding-bottom: 8px;
+            text-align: center;
+            background: rgba(248, 200, 220, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        a:link {
+            color: #c97aa0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        a:active {
+            color: #b86b9a;
+            text-decoration: none;
+            background: rgba(201, 122, 160, 0.3);
+        }
+
+        a:visited {
+            color: #a56c8b;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #e83a75;
+            text-decoration: none;
+            background: rgba(232, 58, 117, 0.2);
+            padding: 5px 10px;
+            border-radius: 8px;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(232, 58, 117, 0.3);
+        }
+
+        .container {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 255, 0.95) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="rgba(255,182,193,0.1)"/></svg>');
+            padding: 40px;
+            border-radius: 25px;
+            margin: 25px 0;
+            box-shadow: 
+                0 15px 35px rgba(139, 90, 124, 0.2),
+                inset 0 0 50px rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #f8c8dc, #f4acb6, #f8c8dc);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #f8c8dc, #f4acb6);
+            color: #8b5a7c;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-style: normal;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(139, 90, 124, 0.2);
+            font-weight: 600;
+        }
+
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #f4acb6, #f8c8dc);
+            transform: translateY(-5px);
+            border-color: #e83a75;
+            box-shadow: 0 8px 25px rgba(232, 58, 117, 0.4);
+            color: #e83a75;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(216, 167, 202, 0.5);
+            color: #8b5a7c;
+            font-style: normal;
+            background: rgba(248, 200, 220, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .nav-menu a {
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        .nav-menu a:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .nav-menu a:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .container:hover {
+            box-shadow: 
+                0 20px 45px rgba(139, 90, 124, 0.3),
+                inset 0 0 60px rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,11 +203,13 @@
             
             <p>Зверніть увагу, що всі посилання мають різні кольори залежно від їх стану: невідвідані - зелені, відвідані - фіолетові, а при наведенні - червоні.</p>
             
+            <p>Мраморно-рожевий дизайн додає сайту елегантності та сучасності. Такі пастельні тони приємні для ока та створюють позитивне враження.</p>
+            
             <p>Такий підхід до веб-розробки робить наш код чистим, організованим та легким для супроводу. Дякую за увагу!</p>
         </main>
 
         <footer>
-            <p>© 2024 Лабораторна робота №11. Сторінка 3</p>
+            <p>© 2025 Лабораторна робота №11. Сторінка 3</p>
         </footer>
     </div>
 </body>
