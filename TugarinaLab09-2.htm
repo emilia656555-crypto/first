@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 9, Завдання 2 - Тугаріна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 50%, #fce4ec 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+            color: #880e4f;
+            line-height: 1.6;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 45px;
+            box-shadow: 0 10px 35px rgba(255, 105, 180, 0.15);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            animation: shimmer 8s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            color: #d81b60;
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(216, 27, 96, 0.1);
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #ad1457;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Вільні стильові класи */
+        .section-title {
+            color: #c2185b;
+            font-family: 'Georgia', serif;
+            font-size: 26px;
+            font-weight: 600;
+            padding: 20px 25px;
+            margin: 35px 0 20px 0;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border-radius: 12px;
+            border-left: 4px solid #ec407a;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title::before {
+            content: '📖';
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                transparent 70%);
+            z-index: -1;
+            animation: shine 3s infinite;
+        }
+
+        .main-text {
+            color: #880e4f;
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: justify;
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(252, 228, 236, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(248, 187, 217, 0.5);
+        }
+
+        .footnote {
+            color: #ad1457;
+            font-size: 14px;
+            font-style: italic;
+            padding: 15px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #f8bbd9, #f48fb1);
+            border-radius: 6px;
+            border-left: 3px solid #ec407a;
+            position: relative;
+        }
+
+        .footnote::before {
+            content: '💫';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border: 2px dashed #ec407a;
+            text-align: center;
+            color: #ad1457;
+            box-shadow: 0 5px 20px rgba(244, 143, 177, 0.2);
+            position: relative;
+        }
+
+        .highlight::before, .highlight::after {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            font-size: 18px;
+        }
+
+        .highlight::before { left: 20px; }
+        .highlight::after { right: 20px; }
+
+        .quote {
+            color: #880e4f;
+            font-size: 15px;
+            font-style: italic;
+            padding: 20px 25px;
+            margin: 25px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border: 1px solid #f8bbd9;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 40px;
+            color: #ec407a;
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            opacity: 0.5;
+        }
+
+        .quote::after {
+            content: '"';
+            font-size: 40px;
+            color: #ec407a;
+            position: absolute;
+            bottom: -15px;
+            right: 10px;
+            opacity: 0.5;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #f8bbd9, 
+                #ec407a, 
+                #f8bbd9, 
+                transparent);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+
+        .sparkle {
+            text-align: center;
+            margin: 35px 0;
+            font-size: 28px;
+            color: #ec407a;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(255, 182, 193, 0.3);
+            color: #ad1457;
+            font-size: 14px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .signature {
+            color: #ec407a;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Лабораторна робота №9 - Завдання 2</h1>
+            <div class="subtitle">Тугаріна Емілія | 304-ТН | Вільні стильові класи</div>
+        </div>
+
+        <div class="section-title">Вступ до CSS-класів</div>
+        
+        <p class="main-text">У цьому завданні ми використовуємо вільні стильові класи, які не прив'язані до конкретних HTML-тегів. Це дозволяє нам застосовувати однакові стилі до різних елементів, забезпечуючи консистентність дизайну.</p>
+
+        <div class="highlight">
+            <strong>Класи дозволяють перевикористовувати стилі!</strong><br>
+            Один клас може застосовуватись до різних типів елементів.
+        </div>
+
+        <div class="section-title">Основні переваги CSS-класів</div>
+        
+        <p class="main-text">Використання CSS-класів значно спрощує підтримку веб-сторінок. Замість того, щоб задавати стилі для кожного елементу окремо, ми можемо створити набір класів і використовувати їх по всій сторінці.</p>
+
+        <div class="footnote">Це примітка, яка використовує клас .footnote для створення візуального акценту на додатковій інформації.</div>
+
+        <p class="main-text">Класи також дозволяють легко вносити зміни в дизайн. Якщо потрібно змінити зовнішній вигляд всіх елементів певного типу, досить відредагувати лише один CSS-клас.</p>
+
+        <div class="quote">
+            "Гнучкість CSS-класів робить їх незамінним інструментом у арсеналі веб-розробника. Вони дозволяють створювати складні дизайни з мінімальними зусиллями."
+        </div>
+
+        <div class="section-title">Практичне застосування</div>
+        
+        <p class="main-text">У цій роботі ми створили кілька вільних класів: .section-title для заголовків розділів, .main-text для основного тексту, .footnote для виносок та .quote для цитат.</p>
+
+        <div class="footnote">Ще одна виноска, яка демонструє повторне використання класу .footnote. Зверніть увагу на послідовність стилів.</div>
+
+        <p class="main-text">Кожен з цих класів може бути застосований до будь-якого HTML-елементу, що робить їх універсальними та зручними у використанні.</p>
+
+        <div class="divider"></div>
+
+        <div class="highlight">
+            <strong>Висновок:</strong> Вільні CSS-класи - це потужний інструмент для створення консистентного та легко підтримуваного дизайну веб-сторінок.
+        </div>
+
+        <div class="sparkle">🌸 💖 ✨</div>
+
+        <div class="footer">
+            Вільні стильові класи у рожевому стилі
+            <div class="signature">pink pearl aesthetic</div>
+        </div>
+    </div>
+</body>
+</html>
