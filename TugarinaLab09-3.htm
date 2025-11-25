@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 9, Завдання 3 - Тугаріна</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 50%, #fce4ec 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+            color: #880e4f;
+            line-height: 1.6;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 45px;
+            box-shadow: 0 10px 35px rgba(255, 105, 180, 0.15);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            animation: shimmer 8s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            color: #d81b60;
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(216, 27, 96, 0.1);
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #ad1457;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Клас для меню */
+        .menu {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border: 2px solid rgba(236, 64, 122, 0.3);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                transparent 70%);
+            z-index: 0;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .menu h2 {
+            color: #c2185b;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu ul {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu li {
+            padding: 12px 20px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            border: 1px solid rgba(248, 187, 217, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu li:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(10px);
+            box-shadow: 0 3px 10px rgba(244, 143, 177, 0.3);
+        }
+
+        .menu li::before {
+            content: '🌸';
+            margin-right: 10px;
+        }
+
+        /* Клас для невеликих інформаційних повідомлень */
+        .small {
+            color: #ad1457;
+            font-size: 12px;
+            font-style: italic;
+            padding: 10px 15px;
+            margin: 15px 0;
+            background: rgba(248, 187, 217, 0.3);
+            border-radius: 6px;
+            border-left: 2px solid #ec407a;
+            position: relative;
+        }
+
+        .small::before {
+            content: '💫';
+            margin-right: 8px;
+            font-size: 10px;
+        }
+
+        .content {
+            color: #880e4f;
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: justify;
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(252, 228, 236, 0.3);
+            border-radius: 10px;
+            border: 1px solid rgba(248, 187, 217, 0.5);
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #f8bbd9, 
+                #ec407a, 
+                #f8bbd9, 
+                transparent);
+            margin: 40px 0;
+            border-radius: 2px;
+        }
+
+        .sparkle {
+            text-align: center;
+            margin: 35px 0;
+            font-size: 28px;
+            color: #ec407a;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(255, 182, 193, 0.3);
+            color: #ad1457;
+            font-size: 14px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .signature {
+            color: #ec407a;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Лабораторна робота №9 - Завдання 3</h1>
+            <div class="subtitle">Тугаріна Емілія | 304-ТН | Класи menu та small</div>
+        </div>
+
+        <div class="content">
+            <p>У цьому завданні ми створимо та використаємо класи <strong>menu</strong> для виведення елементів меню та <strong>small</strong> для невеликих інформаційних повідомлень.</p>
+        </div>
+
+        <div class="menu">
+            <h2>🌺 Навігаційне меню</h2>
+            <ul>
+                <li>Головна сторінка</li>
+                <li>Про автора</li>
+                <li>Портфоліо робіт</li>
+                <li>Контактна інформація</li>
+                <li>Корисні посилання</li>
+            </ul>
+        </div>
+
+        <div class="small">
+            Адреса поточної сторінки: https://emilia656555-crypto.github.io/first/TugarinaLab09-3.htm
+        </div>
+
+        <div class="content">
+            <p>Клас <strong>menu</strong> використовується для створення елегантних навігаційних меню з анімаціями при наведенні. Кожен пункт меню має плавні переходи та ефекти при взаємодії.</p>
+        </div>
+
+        <div class="menu">
+            <h2>🎀 Додаткові опції</h2>
+            <ul>
+                <li>Налаштування профілю</li>
+                <li>Історія переглядів</li>
+                <li>Збережені матеріали</li>
+                <li>Допомога та підтримка</li>
+            </ul>
+        </div>
+
+        <div class="small">
+            Автор: Тугаріна Емілія, студентка групи 304-ТН
+        </div>
+
+        <div class="content">
+            <p>Клас <strong>small</strong> призначений для відображення невеликих інформаційних повідомлень, таких як контактні дані, технічна інформація або додаткові примітки. Він має компактний розмір та ніжне оформлення.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="menu">
+            <h2>📱 Мобільне меню</h2>
+            <ul>
+                <li>Головна</li>
+                <li>Послуги</li>
+                <li>Галерея</li>
+                <li>Відгуки</li>
+                <li>Контакти</li>
+            </ul>
+        </div>
+
+        <div class="small">
+            Останнє оновлення: 2024 | Всі права захищено
+        </div>
+
+        <div class="small">
+            Для технічних питань звертатися за адресою: support@example.com
+        </div>
+
+        <div class="sparkle">💖 🌸 ✨</div>
+
+        <div class="footer">
+            Класи menu та small у рожевому стилі
+            <div class="signature">pink pearl aesthetic</div>
+        </div>
+    </div>
+</body>
+</html>
