@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float верстка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+        }
+
+        .wrapper {
+            margin: 3px;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #8ca0ff;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .sidebar {
+            background: #ff8c8c;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 25%;
+            float: left;
+            margin-right: 3px;
+            height: 300px;
+        }
+
+        .content {
+            background: #ffff64;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 50%;
+            float: left;
+            margin-right: 3px;
+            height: 300px;
+        }
+
+        .sidebar.right {
+            background: #ff8c8c;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 24.5%;
+            float: left;
+            height: 300px;
+        }
+
+        .footer {
+            background: #8cff8c;
+            border: 1px solid #ddd;
+            padding: 30px;
+            text-align: center;
+            clear: both;
+            margin-top: 3px;
+        }
+
+        /* Адаптивність для телефонів */
+        @media (max-width: 500px) {
+            .sidebar, .content, .sidebar.right {
+                width: 100%;
+                float: none;
+                margin-right: 0;
+                margin-bottom: 3px;
+            }
+        }
+
+        /* Для планшетів */
+        @media (min-width: 500px) and (max-width: 749px) {
+            .sidebar, .sidebar.right {
+                width: 30%;
+            }
+            .content {
+                width: 69.5%;
+            }
+        }
+
+        /* Для більших екранів */
+        @media (min-width: 750px) and (max-width: 949px) {
+            .sidebar, .sidebar.right {
+                width: 25%;
+            }
+            .content {
+                width: 49.5%;
+            }
+        }
+
+        /* Для дуже великих екранів */
+        @media (min-width: 1200px) {
+            .wrapper {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>🌊 Float верстка</h1>
+            <p>Це сторінка з використанням float для розмітки</p>
+        </header>
+        
+        <aside class="sidebar">
+            <h3>Ліва панель</h3>
+            <p>Тут може бути меню або додаткова інформація</p>
+        </aside>
+        
+        <main class="content">
+            <h2>Основний контент</h2>
+            <p>Це головна частина сторінки з основним вмістом</p>
+            <p>Float верстка - одна з найстаріших технологій!</p>
+        </main>
+        
+        <aside class="sidebar right">
+            <h3>Права панель</h3>
+            <p>Тут можуть бути посилання або реклама</p>
+        </aside>
+        
+        <footer class="footer">
+            <p>Float верстка - лабораторна робота 10</p>
+        </footer>
+    </div>
+</body>
+</html>
