@@ -8,163 +8,243 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
         }
 
         body {
-            background: #fdf6f0;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 50%, #fce4ec 100%);
             min-height: 100vh;
             padding: 50px 20px;
-            color: #5d4037;
+            color: #880e4f;
             line-height: 1.6;
-            background-image: radial-gradient(#d7ccc8 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-attachment: fixed;
         }
 
         .container {
             max-width: 950px;
             margin: 0 auto;
-            background: #fffaf0;
+            background: rgba(255, 255, 255, 0.9);
             padding: 50px 45px;
-            box-shadow: 0 8px 30px rgba(141, 110, 99, 0.1);
-            border-radius: 12px;
-            border: 1px solid #e6d2c9;
+            box-shadow: 0 10px 35px rgba(255, 105, 180, 0.15);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            backdrop-filter: blur(10px);
             position: relative;
+            overflow: hidden;
         }
 
         .container::before {
             content: '';
             position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            border: 1px solid #d7ccc8;
-            border-radius: 8px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            animation: shimmer 8s infinite linear;
             pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .header {
             text-align: center;
             margin-bottom: 50px;
             padding-bottom: 30px;
-            border-bottom: 1px solid #e6d2c9;
+            border-bottom: 2px solid rgba(255, 182, 193, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .header h1 {
-            color: #6d4c41;
-            font-size: 38px;
-            font-weight: 400;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
+            color: #d81b60;
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(216, 27, 96, 0.1);
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
-            color: #8d6e63;
+            color: #ad1457;
             font-size: 16px;
             font-weight: 300;
-            font-style: italic;
+            letter-spacing: 1px;
         }
 
-        /* Стильові класи для h2 у бежевому стилі */
-        h2.classic {
-            color: #5d4037;
+        /* Стильові класи для h2 у рожевому стилі з відливами */
+        h2.romantic {
+            color: #c2185b;
             font-family: 'Georgia', serif;
-            font-size: 26px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 500;
             text-align: left;
-            padding: 20px 0 15px 0;
-            margin: 35px 0 20px 0;
-            border-bottom: 2px solid #d7ccc8;
-            background: linear-gradient(90deg, #efebe9, transparent);
-            padding-left: 20px;
-            border-left: 4px solid #bcaaa4;
+            padding: 25px 30px;
+            margin: 40px 0 25px 0;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            border-radius: 15px;
+            border: 1px solid rgba(248, 187, 217, 0.8);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        h2.soft {
-            color: #795548;
-            font-family: 'Georgia', serif;
-            font-size: 24px;
+        h2.romantic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                transparent 70%);
+            z-index: -1;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h2.dreamy {
+            color: #ad1457;
+            font-family: 'Arial', sans-serif;
+            font-size: 26px;
             font-weight: 400;
             font-style: italic;
             text-align: center;
-            padding: 25px;
-            margin: 40px 0 25px 0;
-            background: #f5f0eb;
-            border-radius: 8px;
-            border: 1px solid #e0d1c7;
-            box-shadow: 0 4px 12px rgba(141, 110, 99, 0.08);
+            padding: 30px;
+            margin: 45px 0 30px 0;
+            background: linear-gradient(135deg, #f8bbd9, #f48fb1);
+            border-radius: 25px;
+            border: 2px dashed #ec407a;
+            box-shadow: 0 8px 25px rgba(244, 143, 177, 0.3);
+            position: relative;
         }
 
-        h2.elegant {
-            color: #4e342e;
+        h2.dreamy::after {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 20px;
+        }
+
+        h2.luxury {
+            color: #880e4f;
             font-family: 'Georgia', serif;
-            font-size: 22px;
-            font-weight: 500;
+            font-size: 24px;
+            font-weight: 600;
             text-align: right;
-            padding: 18px 25px;
+            padding: 20px 35px;
             margin: 38px 0 22px 0;
-            background: #fff8f0;
-            border-top: 1px solid #d7ccc8;
-            border-bottom: 1px solid #d7ccc8;
-            border-right: 3px solid #bcaaa4;
-            font-variant: small-caps;
-            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9, #fce4ec);
+            border-left: 4px solid #ec407a;
+            border-right: 4px solid #ec407a;
+            text-shadow: 0 1px 2px rgba(136, 14, 79, 0.1);
+            position: relative;
+        }
+
+        h2.luxury::before {
+            content: '💖';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .content-section {
             margin: 45px 0;
+            position: relative;
+            z-index: 1;
         }
 
         p {
-            color: #5d4037;
+            color: #880e4f;
             line-height: 1.7;
-            margin: 20px 0;
+            margin: 25px 0;
             text-align: justify;
             font-size: 16px;
             font-weight: 300;
         }
 
         .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #d7ccc8, transparent);
-            margin: 35px 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #f8bbd9, 
+                #ec407a, 
+                #f8bbd9, 
+                transparent);
+            margin: 40px 0;
+            border-radius: 2px;
         }
 
         .accent {
-            background: #f9f4f0;
-            padding: 22px;
-            margin: 28px 0;
-            border-left: 3px solid #bcaaa4;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 12px;
+            border: 1px solid rgba(248, 187, 217, 0.8);
             font-style: italic;
-            color: #795548;
-            box-shadow: 0 2px 8px rgba(141, 110, 99, 0.05);
+            color: #ad1457;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+            position: relative;
         }
 
-        .flower-decoration {
+        .accent::before {
+            content: '"';
+            font-size: 40px;
+            color: #ec407a;
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            opacity: 0.3;
+        }
+
+        .sparkle {
             text-align: center;
-            margin: 30px 0;
-            font-size: 24px;
-            color: #bcaaa4;
-            opacity: 0.7;
+            margin: 35px 0;
+            font-size: 28px;
+            color: #ec407a;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
         }
 
         .footer {
             text-align: center;
-            margin-top: 55px;
+            margin-top: 60px;
             padding-top: 25px;
-            border-top: 1px solid #e6d2c9;
-            color: #8d6e63;
+            border-top: 2px solid rgba(255, 182, 193, 0.3);
+            color: #ad1457;
             font-size: 14px;
             font-weight: 300;
+            position: relative;
+            z-index: 1;
         }
 
         .signature {
-            color: #bcaaa4;
+            color: #ec407a;
             font-size: 12px;
             letter-spacing: 2px;
-            margin-top: 8px;
+            margin-top: 10px;
             font-style: italic;
         }
     </style>
@@ -177,38 +257,38 @@
         </div>
 
         <div class="content-section">
-            <h2 class="classic">Класичний заголовок</h2>
-            <p>Цей заголовок використовує теплі бежеві тони з класичним шрифтом Georgia. Ліва рамка та градієнтний фон створюють відчуття затишку та елегантності, нагадуючи сторінки старовинної книги.</p>
+            <h2 class="romantic">Романтичний заголовок</h2>
+            <p>Цей заголовок з перламутровим відливом та ніжним рожевим градієнтом створює атмосферу казки та романтики. Анімація блимаючого ефекту додає магії та динаміки.</p>
 
-            <div class="flower-decoration">🌾 • 🌸 • 🍂</div>
+            <div class="sparkle">✦ ✦ ✦</div>
 
-            <h2 class="soft">М'який заголовок</h2>
-            <p>Заголовок з округленими кутами та ніжним фоном створює атмосферу затишку та комфорту. Італік додає тексту легкості, а тонкі тіні створюють об'єм.</p>
+            <h2 class="dreamy">Мрійливий заголовок</h2>
+            <p>Заголовок з пунктирною рамкою та градієнтом від світло-рожевого до насиченого. Емодзі зірочки в куті додає чарівності, створюючи відчуття мрій та фантазій.</p>
 
             <div class="accent">
-                "Бежевий колір — це кольор спокою, гармонії та природної елегантності."
+                Рожевий колір — це кольор кохання, ніжності та нескінченної краси. Він нагадує нам про весняні квіти та солодкі мрії.
             </div>
 
-            <h2 class="elegant">Елегантний заголовок</h2>
-            <p>Правий вирівнювання та капітелі створюють відчуття вишуканості. Тонка права рамка та світлий бежевий фон нагадують дизайн преміальних косметичних брендів.</p>
+            <h2 class="luxury">Розкішний заголовок</h2>
+            <p>Елегантний заголовок з бічними рамками та серденьком зліва. Градієнтний фон створює ефект глибини, а жирний шрифт підкреслює важливість контенту.</p>
 
             <div class="divider"></div>
 
-            <h2 class="classic">Ще один класичний заголовок</h2>
-            <p>Повторне використання класу підкреслює консистентність дизайну. Класичний стиль завжди виглядає стримано та дорого.</p>
+            <h2 class="romantic">Ще один романтичний заголовок</h2>
+            <p>Повторне використання романтичного стилю демонструє, як одна тема може бути послідовною та гармонійною throughout всієї сторінки.</p>
 
-            <h2 class="soft">Додатковий м'який заголовок</h2>
-            <p>Кожен м'який заголовок додає сторінці затишку та тепла. Такий дизайн ідеально підходить для особистих блогів та творчих проектів.</p>
+            <h2 class="dreamy">Додатковий мрійливий заголовок</h2>
+            <p>Кожен мрійливий заголовок додає сторінці легкості та повітряності, наче сторониці з щоденника юної принцеси.</p>
 
-            <div class="flower-decoration">🍁 • 🪷 • 🍃</div>
+            <div class="sparkle">💫 🌸 💖</div>
 
-            <h2 class="elegant">Фінальний елегантний заголовок</h2>
-            <p>Завершальний акцент у бежевій гамі. Елегантність у простоті — ось головний принцип цього стилю.</p>
+            <h2 class="luxury">Фінальний розкішний заголовок</h2>
+            <p>Завершальний акцент у рожевій гамі з елементами розкоші та вишуканості. Ідеальне завершення для сторінки про стиль та красу.</p>
         </div>
 
         <div class="footer">
-            Стильові класи у бежевому стилі
-            <div class="signature">beige aesthetic</div>
+            Стильові класи у рожевому стилі з перламутровими відливами
+            <div class="signature">pink pearl aesthetic</div>
         </div>
     </div>
 </body>
