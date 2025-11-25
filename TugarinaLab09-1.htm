@@ -8,110 +8,118 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         body {
-            background: #fafafa;
+            background: #fdf6f0;
             min-height: 100vh;
-            padding: 60px 20px;
-            color: #333;
+            padding: 50px 20px;
+            color: #5d4037;
             line-height: 1.6;
+            background-image: radial-gradient(#d7ccc8 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 0 auto;
-            background: white;
-            padding: 60px 50px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            border-radius: 2px;
+            background: #fffaf0;
+            padding: 50px 45px;
+            box-shadow: 0 8px 30px rgba(141, 110, 99, 0.1);
+            border-radius: 12px;
+            border: 1px solid #e6d2c9;
             position: relative;
         }
 
         .container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #e0e0e0, #c0c0c0, #e0e0e0);
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid #d7ccc8;
+            border-radius: 8px;
+            pointer-events: none;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             padding-bottom: 30px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e6d2c9;
         }
 
         .header h1 {
-            color: #2c2c2c;
-            font-size: 42px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            color: #6d4c41;
+            font-size: 38px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
         }
 
         .subtitle {
-            color: #666;
+            color: #8d6e63;
             font-size: 16px;
             font-weight: 300;
-            letter-spacing: 2px;
+            font-style: italic;
         }
 
-        /* Стильові класи для h2 у стилі Кім Кардашьян */
-        h2.minimal {
-            color: #2c2c2c;
-            font-family: 'Helvetica Neue', sans-serif;
+        /* Стильові класи для h2 у бежевому стилі */
+        h2.classic {
+            color: #5d4037;
+            font-family: 'Georgia', serif;
+            font-size: 26px;
+            font-weight: 600;
+            text-align: left;
+            padding: 20px 0 15px 0;
+            margin: 35px 0 20px 0;
+            border-bottom: 2px solid #d7ccc8;
+            background: linear-gradient(90deg, #efebe9, transparent);
+            padding-left: 20px;
+            border-left: 4px solid #bcaaa4;
+        }
+
+        h2.soft {
+            color: #795548;
+            font-family: 'Georgia', serif;
             font-size: 24px;
             font-weight: 400;
-            text-align: left;
-            padding: 25px 0 15px 0;
-            margin: 40px 0 20px 0;
-            border-bottom: 1px solid #e0e0e0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-style: italic;
+            text-align: center;
+            padding: 25px;
+            margin: 40px 0 25px 0;
+            background: #f5f0eb;
+            border-radius: 8px;
+            border: 1px solid #e0d1c7;
+            box-shadow: 0 4px 12px rgba(141, 110, 99, 0.08);
         }
 
         h2.elegant {
-            color: #555;
+            color: #4e342e;
             font-family: 'Georgia', serif;
-            font-size: 26px;
-            font-weight: 300;
-            font-style: italic;
-            text-align: center;
-            padding: 30px;
-            margin: 50px 0 30px 0;
-            background: #f8f8f8;
-            border-left: 3px solid #ccc;
-            letter-spacing: 1.5px;
-        }
-
-        h2.luxury {
-            color: #000;
-            font-family: 'Helvetica Neue', sans-serif;
             font-size: 22px;
             font-weight: 500;
             text-align: right;
-            padding: 20px 0;
-            margin: 45px 0 25px 0;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            padding: 18px 25px;
+            margin: 38px 0 22px 0;
+            background: #fff8f0;
+            border-top: 1px solid #d7ccc8;
+            border-bottom: 1px solid #d7ccc8;
+            border-right: 3px solid #bcaaa4;
+            font-variant: small-caps;
+            letter-spacing: 1px;
         }
 
         .content-section {
-            margin: 50px 0;
+            margin: 45px 0;
         }
 
         p {
-            color: #444;
-            line-height: 1.8;
-            margin: 25px 0;
+            color: #5d4037;
+            line-height: 1.7;
+            margin: 20px 0;
             text-align: justify;
             font-size: 16px;
             font-weight: 300;
@@ -119,35 +127,45 @@
 
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
-            margin: 40px 0;
+            background: linear-gradient(90deg, transparent, #d7ccc8, transparent);
+            margin: 35px 0;
         }
 
         .accent {
-            background: #f8f8f8;
-            padding: 25px;
-            margin: 30px 0;
-            border-left: 2px solid #ccc;
+            background: #f9f4f0;
+            padding: 22px;
+            margin: 28px 0;
+            border-left: 3px solid #bcaaa4;
+            border-radius: 4px;
             font-style: italic;
-            color: #666;
+            color: #795548;
+            box-shadow: 0 2px 8px rgba(141, 110, 99, 0.05);
+        }
+
+        .flower-decoration {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 24px;
+            color: #bcaaa4;
+            opacity: 0.7;
         }
 
         .footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            color: #888;
+            margin-top: 55px;
+            padding-top: 25px;
+            border-top: 1px solid #e6d2c9;
+            color: #8d6e63;
             font-size: 14px;
             font-weight: 300;
-            letter-spacing: 1px;
         }
 
         .signature {
-            color: #ccc;
+            color: #bcaaa4;
             font-size: 12px;
-            letter-spacing: 3px;
-            margin-top: 10px;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            font-style: italic;
         }
     </style>
 </head>
@@ -159,36 +177,38 @@
         </div>
 
         <div class="content-section">
-            <h2 class="minimal">Мінімалістичний заголовок</h2>
-            <p>Цей заголовок відображає сутність мінімалізму — чистий шрифт, тонкі лінії та нейтральні кольори. Він не привертає зайвої уваги, але створює атмосферу елегантності та професійності.</p>
+            <h2 class="classic">Класичний заголовок</h2>
+            <p>Цей заголовок використовує теплі бежеві тони з класичним шрифтом Georgia. Ліва рамка та градієнтний фон створюють відчуття затишку та елегантності, нагадуючи сторінки старовинної книги.</p>
 
-            <div class="divider"></div>
+            <div class="flower-decoration">🌾 • 🌸 • 🍂</div>
 
-            <h2 class="elegant">Елегантний заголовок</h2>
-            <p>Елегантність у простоті. Цей заголовок використовує класичний шрифт з курсивом та світлий фон для створення ніжного, але вишуканого вигляду, що нагадує стиль високої моди.</p>
+            <h2 class="soft">М'який заголовок</h2>
+            <p>Заголовок з округленими кутами та ніжним фоном створює атмосферу затишку та комфорту. Італік додає тексту легкості, а тонкі тіні створюють об'єм.</p>
 
             <div class="accent">
-                "Справжня елегантність — це коли все виглядає легко і природно."
+                "Бежевий колір — це кольор спокою, гармонії та природної елегантності."
             </div>
 
-            <h2 class="luxury">Розкішний заголовок</h2>
-            <p>Розкіш у деталях. Тонкі верхня та нижня лінії, правий вирівнювання та капслок — елементи, що створюють відчуття ексклюзивності та дороговизни.</p>
+            <h2 class="elegant">Елегантний заголовок</h2>
+            <p>Правий вирівнювання та капітелі створюють відчуття вишуканості. Тонка права рамка та світлий бежевий фон нагадують дизайн преміальних косметичних брендів.</p>
 
             <div class="divider"></div>
 
-            <h2 class="minimal">Ще один мінімалістичний заголовок</h2>
-            <p>Повторне використання класу демонструє консистентність дизайну. Мінімалізм дозволяє зосередитись на контенті, не відволікаючись на зайві декоративні елементи.</p>
+            <h2 class="classic">Ще один класичний заголовок</h2>
+            <p>Повторне використання класу підкреслює консистентність дизайну. Класичний стиль завжди виглядає стримано та дорого.</p>
 
-            <h2 class="elegant">Додатковий елегантний заголовок</h2>
-            <p>Кожен елегантний заголовок підтримує загальну атмосферу вишуканості та стилю, що характерно для брендів класу люкс.</p>
+            <h2 class="soft">Додатковий м'який заголовок</h2>
+            <p>Кожен м'який заголовок додає сторінці затишку та тепла. Такий дизайн ідеально підходить для особистих блогів та творчих проектів.</p>
 
-            <h2 class="luxury">Фінальний розкішний заголовок</h2>
-            <p>Завершальний акцент у стилі високої моди. Чіткі лінії, строгий вигляд та відчуття ексклюзивності — ось що робить цей стиль таким привабливим.</p>
+            <div class="flower-decoration">🍁 • 🪷 • 🍃</div>
+
+            <h2 class="elegant">Фінальний елегантний заголовок</h2>
+            <p>Завершальний акцент у бежевій гамі. Елегантність у простоті — ось головний принцип цього стилю.</p>
         </div>
 
         <div class="footer">
-            Стильові класи у дії
-            <div class="signature">KIM K STYLE</div>
+            Стильові класи у бежевому стилі
+            <div class="signature">beige aesthetic</div>
         </div>
     </div>
 </body>
