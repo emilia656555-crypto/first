@@ -2,78 +2,248 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Лабораторна робота №3 - МГУА</title>
     <style>
-        body { font-family: Arial; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
-        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1, h2, h3 { color: #2c3e50; }
-        h1 { border-bottom: 3px solid #3498db; padding-bottom: 10px; }
-        .info-box { background: #e8f4fc; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 5px solid #3498db; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { padding: 12px; text-align: center; border: 1px solid #ddd; }
-        th { background: #3498db; color: white; }
-        tr:nth-child(even) { background: #f8f9fa; }
-        .optimal { background: #d4edda !important; }
-        .conclusion { background: #e8f4fc; padding: 20px; border-radius: 8px; margin: 25px 0; }
-        img { max-width: 100%; height: auto; margin: 20px 0; border: 1px solid #ddd; border-radius: 5px; }
-        .nav-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
-        .nav-links a { color: #3498db; text-decoration: none; padding: 10px 20px; border: 2px solid #3498db; border-radius: 5px; margin-right: 10px; }
-        .nav-links a:hover { background: #3498db; color: white; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #4a6fa5;
+            margin-bottom: 30px;
+        }
+        h1 { color: #2c3e50; margin-bottom: 10px; }
+        h2 { color: #3498db; margin: 25px 0 15px; }
+        h3 { color: #2980b9; margin: 20px 0 10px; }
+        .student-info {
+            background: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #f1f8ff; }
+        .optimal { background-color: #d4edda !important; color: #155724; font-weight: bold; }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .conclusion {
+            background: linear-gradient(135deg, #e8f4fc, #d4e6ff);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #2980b9;
+            margin: 30px 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #dee2e6;
+        }
+        .nav-links a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .formula {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Cambria', 'Times New Roman', serif;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            table { font-size: 14px; }
+            th, td { padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ПОЛТАВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ</h1>
-        <h2>імені Юрія Кондратюка</h2>
-        <h3>Кафедра "Комп'ютерні науки"</h3>
-        
-        <div class="info-box">
-            <h2>ЛАБОРАТОРНА РОБОТА №3</h2>
-            <p><strong>Тема:</strong> МГУА та інформаційний критерій на одновимірних даних</p>
-            <p><strong>Виконала:</strong> студентка групи 304-ТН Тугаріна Емілія</p>
-            <p><strong>Номер варіанта:</strong> 23</p>
-            <p><strong>Дата:</strong> <span id="currentDate"></span></p>
-        </div>
-        
-        <h2>Результати моделювання</h2>
-        <img src="lab3_plot.png" alt="Графіки результатів МГУА">
-        
-        <h3>Таблиця результатів МГУА з інформаційним критерієм</h3>
-        <table>
-            <tr><th>Ступінь</th><th>k</th><th>Train IC</th><th>Test IC</th><th>Test MSE</th><th>Test R²</th></tr>
-            <tr><td>1</td><td>2</td><td>0.3245</td><td>0.3982</td><td>0.2309</td><td>0.8075</td></tr>
-            <tr><td>2</td><td>3</td><td>0.2876</td><td>0.3341</td><td>0.1981</td><td>0.8343</td></tr>
-            <tr class="optimal"><td><strong>3</strong></td><td><strong>4</strong></td><td><strong>0.2451</strong></td><td><strong>0.2765</strong></td><td><strong>0.1619</strong></td><td><strong>0.8641</strong></td></tr>
-            <tr><td>4</td><td>5</td><td>0.2387</td><td>0.2894</td><td>0.1756</td><td>0.8523</td></tr>
-            <tr><td>5</td><td>6</td><td>0.2312</td><td>0.3012</td><td>0.1834</td><td>0.8456</td></tr>
-            <tr><td>6</td><td>7</td><td>0.2254</td><td>0.3245</td><td>0.1987</td><td>0.8341</td></tr>
-        </table>
-        
-        <h3>Порівняння з поліноміальною регресією (Лабораторна №2)</h3>
-        <table>
-            <tr><th>Метод</th><th>Оптимальний ступінь</th><th>Test MSE</th><th>Test R²</th><th>Критерій вибору</th></tr>
-            <tr><td>МГУА</td><td>3</td><td>0.1619</td><td>0.8641</td><td>Мінімальний IC</td></tr>
-            <tr><td>Поліноміальна регресія</td><td>3</td><td>0.1619</td><td>0.8641</td><td>Мінімальний Test MSE</td></tr>
-        </table>
-        
-        <div class="conclusion">
-            <h3>Висновки</h3>
+        <header>
+            <h1>ПОЛТАВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ</h1>
+            <h2>імені Юрія Кондратюка</h2>
+            <h3>Кафедра "Комп'ютерні науки"</h3>
+            
+            <div class="student-info">
+                <h2>ЛАБОРАТОРНА РОБОТА №3</h2>
+                <p><strong>Тема:</strong> МГУА та інформаційний критерій на одновимірних даних</p>
+                <p><strong>Виконала:</strong> студентка групи 304-ТН Тугаріна Емілія</p>
+                <p><strong>Номер варіанта:</strong> 23</p>
+                <p><strong>Дата виконання:</strong> <span id="currentDate"></span></p>
+            </div>
+        </header>
+
+        <section>
+            <h2>Мета роботи</h2>
+            <p>Зрозуміти основні принципи методу групового урахування аргументів (GMDH) на прикладі простих одновимірних даних та порівняти його ефективність з поліноміальною регресією.</p>
+            
+            <h2>Теоретичні відомості</h2>
+            <p>Метод групового урахування аргументів (GMDH) — це індуктивний алгоритм побудови моделей, який поетапно генерує та відбирає моделі на основі інформаційного критерію.</p>
+            
+            <div class="formula">
+                <strong>Інформаційний критерій:</strong><br>
+                I = σ² / (1 - k²/n)
+            </div>
+            
+            <p>де:<br>
+            • σ² — середньоквадратична помилка моделі<br>
+            • k — кількість параметрів у моделі<br>
+            • n — розмір вибірки</p>
+            
+            <h2>Методика дослідження</h2>
             <ol>
-                <li><strong>МГУА з інформаційним критерієм</strong> успішно вибрав оптимальну модель - поліном 3-го ступеня.</li>
-                <li><strong>Інформаційний критерій</strong> ефективно балансує між точністю моделі та її складністю, запобігаючи перенавчанню.</li>
-                <li><strong>Результати МГУА</strong> повністю збігаються з результатами поліноміальної регресії з лабораторної роботи №2.</li>
-                <li><strong>МГУА</strong> автоматизує процес вибору моделі, що є перевагою при роботі зі складнішими даними.</li>
+                <li>Використано ті самі дані, що й у лабораторній №2: y = sin(x) + 0.5x + шум</li>
+                <li>Реалізовано алгоритм МГУА для поліномів ступенів 1-8</li>
+                <li>Для кожної моделі обчислено інформаційний критерій</li>
+                <li>Обрано модель з мінімальним значенням IC</li>
+                <li>Порівняно результат з найкращою моделлю з лабораторної №2</li>
             </ol>
-        </div>
-        
-        <div class="nav-links">
-            <a href="lab2.html">← Лабораторна №2</a>
-            <a href="index.html">На головну</a>
-        </div>
+            
+            <h2>Результати моделювання</h2>
+            <img src="lab3_plot.png" alt="Графіки результатів МГУА">
+            
+            <h3>Таблиця результатів МГУА</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ступінь</th>
+                        <th>k</th>
+                        <th>Train MSE</th>
+                        <th>Test MSE</th>
+                        <th>Test R²</th>
+                        <th>Test IC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>2</td><td>0.2143</td><td>0.2309</td><td>0.8075</td><td>0.3982</td></tr>
+                    <tr><td>2</td><td>3</td><td>0.1874</td><td>0.1981</td><td>0.8343</td><td>0.3341</td></tr>
+                    <tr class="optimal"><td><strong>3</strong></td><td><strong>4</strong></td><td><strong>0.1565</strong></td><td><strong>0.1619</strong></td><td><strong>0.8641</strong></td><td><strong>0.2765</strong></td></tr>
+                    <tr><td>4</td><td>5</td><td>0.1452</td><td>0.1756</td><td>0.8523</td><td>0.2894</td></tr>
+                    <tr><td>5</td><td>6</td><td>0.1387</td><td>0.1834</td><td>0.8456</td><td>0.3012</td></tr>
+                    <tr><td>6</td><td>7</td><td>0.1324</td><td>0.1987</td><td>0.8341</td><td>0.3245</td></tr>
+                    <tr><td>7</td><td>8</td><td>0.1289</td><td>0.2156</td><td>0.8214</td><td>0.3567</td></tr>
+                    <tr><td>8</td><td>9</td><td>0.1254</td><td>0.2345</td><td>0.8072</td><td>0.3981</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>Порівняльна таблиця методів</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Метод</th>
+                        <th>Оптимальний ступінь</th>
+                        <th>Test MSE</th>
+                        <th>Test R²</th>
+                        <th>Критерій вибору</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="optimal">
+                        <td><strong>МГУА</strong></td>
+                        <td><strong>3</strong></td>
+                        <td><strong>0.1619</strong></td>
+                        <td><strong>0.8641</strong></td>
+                        <td><strong>Мінімальний IC</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Поліноміальна регресія (лаб. №2)</td>
+                        <td>3</td>
+                        <td>0.1619</td>
+                        <td>0.8641</td>
+                        <td>Мінімальний Test MSE</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="conclusion">
+                <h3>Аналіз результатів</h3>
+                <ul>
+                    <li>МГУА успішно вибрав поліном <strong>3-го ступеня</strong> як оптимальну модель</li>
+                    <li>Інформаційний критерій досягає мінімуму при ступені 3, після чого починає зростати</li>
+                    <li>Результати МГУА <strong>повністю збігаються</strong> з результатами поліноміальної регресії з лабораторної №2</li>
+                    <li>IC ефективно враховує як точність моделі, так і її складність</li>
+                </ul>
+                
+                <h3>Висновки</h3>
+                <ol>
+                    <li>Метод МГУА з використанням інформаційного критерію є ефективним інструментом для автоматичного вибору оптимальної моделі</li>
+                    <li>Інформаційний критерій забезпечує баланс між точністю та складністю моделі, запобігаючи перенавчанню</li>
+                    <li>Для одновимірних даних МГУА дав ті самі результати, що й ручний підбір у поліноміальній регресії</li>
+                    <li>Перевагою МГУА є повна автоматизація процесу вибору моделі</li>
+                </ol>
+            </div>
+            
+            <h3>Посилання на ресурси</h3>
+            <div class="student-info">
+                <p><strong>Повний код лабораторної роботи:</strong> <a href="lab3.py">lab3.py</a></p>
+                <p><strong>Лабораторна робота №2:</strong> <a href="lab2.html">lab2.html</a></p>
+                <p><strong>Лабораторна робота №1:</strong> <a href="lab1_result.html">lab1_result.html</a></p>
+                <p><strong>GitHub репозиторій:</strong> <a href="https://github.com/emilia656555-crypto/first">github.com/emilia656555-crypto/first</a></p>
+            </div>
+            
+            <div class="nav-links">
+                <a href="lab2.html">← Лабораторна №2</a>
+                <a href="index.html">На головну</a>
+            </div>
+        </section>
     </div>
-    
+
     <script>
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('uk-UA');
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('uk-UA', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
     </script>
 </body>
 </html>
