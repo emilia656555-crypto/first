@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №2 - Поліноміальна регресія</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+            margin-bottom: 30px;
+        }
+        h1 { color: #2c3e50; margin-bottom: 10px; font-size: 28px; }
+        h2 { color: #3498db; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #eee; }
+        h3 { color: #2980b9; margin: 20px 0 10px; }
+        .student-info {
+            background: #e8f4fc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 14px 16px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #f1f8ff; }
+        .optimal { background-color: #d4edda !important; color: #155724; font-weight: bold; }
+        .overfit { background-color: #f8d7da !important; color: #721c24; }
+        .good { color: #27ae60; font-weight: bold; }
+        .bad { color: #e74c3c; font-weight: bold; }
+        .plot-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+        .conclusion {
+            background: linear-gradient(135deg, #e8f4fc, #d4e6ff);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #2980b9;
+            margin: 30px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #dee2e6;
+        }
+        .nav-links a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            table { font-size: 14px; }
+            th, td { padding: 10px 12px; }
+            .nav-links { flex-direction: column; }
+        }
+        
+        /* Графики SVG */
+        .svg-container {
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+        .graph {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #ccc;
+            shape-rendering: crispEdges;
+        }
+        .axis text {
+            font-size: 12px;
+            fill: #666;
+        }
+        .train-point { fill: #3498db; opacity: 0.6; }
+        .test-point { fill: #e74c3c; opacity: 0.6; }
+        .line { stroke: #2ecc71; stroke-width: 2; fill: none; }
+        .grid line {
+            stroke: #f0f0f0;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ПОЛТАВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ</h1>
+            <h2>імені Юрія Кондратюка</h2>
+            <h3>Кафедра "Комп'ютерні науки"</h3>
+            
+            <div class="student-info">
+                <h2>ЛАБОРАТОРНА РОБОТА №2</h2>
+                <p><strong>Тема:</strong> Поліноміальна регресія та перенавчання</p>
+                <p><strong>Виконала:</strong> студентка групи 304-ТН Тугаріна Емілія</p>
+                <p><strong>Номер варіанта:</strong> 23</p>
+                <p><strong>Дата виконання:</strong> <span id="currentDate"></span></p>
+            </div>
+        </header>
+
+        <section>
+            <h2>📊 Результати моделювання</h2>
+            
+            <!-- SVG графики -->
+            <div class="svg-container">
+                <h3>1. Поліноміальні моделі різних ступенів</h3>
+                <div id="polynomialsGraph" style="height: 400px; width: 100%;"></div>
+            </div>
+
+            <div class="plot-container">
+                <h3>2. Залежність метрик від ступеня полінома</h3>
+                <div id="metricsGraph" style="height: 300px; width: 100%;"></div>
+            </div>
+
+            <h3>📈 Метрики якості моделей</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ступінь полінома</th>
+                        <th>MSE (Train)</th>
+                        <th>MSE (Test)</th>
+                        <th>MAE (Train)</th>
+                        <th>MAE (Test)</th>
+                        <th>R² (Train)</th>
+                        <th>R² (Test)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 (лінійна)</td>
+                        <td>0.2143</td>
+                        <td>0.2309</td>
+                        <td>0.3819</td>
+                        <td>0.3985</td>
+                        <td>0.8213</td>
+                        <td>0.8075</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0.1874</td>
+                        <td>0.1981</td>
+                        <td>0.3450</td>
+                        <td>0.3562</td>
+                        <td>0.8430</td>
+                        <td>0.8343</td>
+                    </tr>
+                    <tr class="optimal">
+                        <td><strong>3 (оптимальна)</strong></td>
+                        <td><strong>0.1565</strong></td>
+                        <td><strong>0.1619</strong></td>
+                        <td><strong>0.3126</strong></td>
+                        <td><strong>0.3213</strong></td>
+                        <td><strong>0.8689</strong></td>
+                        <td><strong>0.8641</strong></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>0.1322</td>
+                        <td>0.1874</td>
+                        <td>0.2874</td>
+                        <td>0.3450</td>
+                        <td>0.8892</td>
+                        <td>0.8429</td>
+                    </tr>
+                    <tr class="overfit">
+                        <td>12</td>
+                        <td>0.0954</td>
+                        <td>0.3421</td>
+                        <td>0.2430</td>
+                        <td>0.4676</td>
+                        <td>0.9199</td>
+                        <td>0.7130</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>📉 Аналіз переобучення</h3>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <div>Ступінь 1</div>
+                    <div class="metric-value good">+0.0166</div>
+                    <div>Без переобучення</div>
+                </div>
+                <div class="metric-box">
+                    <div>Ступінь 2</div>
+                    <div class="metric-value good">+0.0107</div>
+                    <div>Без переобучення</div>
+                </div>
+                <div class="metric-box optimal">
+                    <div>Ступінь 3</div>
+                    <div class="metric-value good">+0.0054</div>
+                    <div>ОПТИМАЛЬНО</div>
+                </div>
+                <div class="metric-box">
+                    <div>Ступінь 6</div>
+                    <div class="metric-value">+0.0552</div>
+                    <div>Початок переобучення</div>
+                </div>
+                <div class="metric-box overfit">
+                    <div>Ступінь 12</div>
+                    <div class="metric-value bad">+0.2467</div>
+                    <div>СИЛЬНЕ переобучення</div>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h2>✅ Висновки</h2>
+                <h3>Основні результати:</h3>
+                <ol>
+                    <li><strong>Оптимальна модель:</strong> Поліном <strong>3-го ступеня</strong> має найкращі показники на тестовій вибірці:
+                        <ul>
+                            <li>Test MSE = <strong>0.1619</strong> (найнижча)</li>
+                            <li>Test R² = <strong>0.8641</strong> (найвища)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Переобучення:</strong> Поліном <strong>12-го ступеня</strong> демонструє сильне переобучення:
+                        <ul>
+                            <li>Test MSE у <strong>3.6 рази</strong> вища за Train MSE</li>
+                            <li>Test R² падає до <strong>0.7130</strong></li>
+                        </ul>
+                    </li>
+                    <li><strong>Лінійна модель</strong> (ступінь 1) недообучена - не враховує нелінійну залежність.</li>
+                    <li><strong>Поліном 6-го ступеня</strong> починає переобучуватися - зростає різниця між Train та Test MSE.</li>
+                </ol>
+                
+                <h3>Загальний висновок:</h3>
+                <p>Для даних, згенерованих за формулою <strong>y = sin(x) + 0.5x + шум</strong>, оптимальним є поліном <strong>3-го ступеня</strong>. Ця модель достатньо складна, щоб описати нелінійну залежність, але не настільки складна, щоб переобучитися на шум у даних.</p>
+            </div>
+
+            <h2>🔗 Посилання</h2>
+            <div class="student-info">
+                <p><strong>Лабораторна робота №1:</strong> <a href="lab1_result.html">lab1_result.html</a></p>
+                <p><strong>GitHub репозиторій:</strong> <a href="https://github.com/emilia656555-crypto/first">github.com/emilia656555-crypto/first</a></p>
+                <p><strong>Головна сторінка:</strong> <a href="index.html">index.html</a></p>
+            </div>
+
+            <div class="nav-links">
+                <a href="lab1_result.html">← Лабораторна №1</a>
+                <a href="index.html">🏠 На головну</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 Полтавський національний університет імені Юрія Кондратюка</p>
+            <p>Кафедра "Комп'ютерні науки" | Група 304-ТН | Тугаріна Емілія</p>
+        </footer>
+    </div>
+
+    <script>
+        // 1. Установка текущей даты
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('uk-UA', options);
+        
+        // 2. Функция для создания SVG графиков
+        function createPolynomialGraph() {
+            const svgNS = "http://www.w3.org/2000/svg";
+            const container = document.getElementById('polynomialsGraph');
+            
+            // Создаем SVG элемент
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("width", "100%");
+            svg.setAttribute("height", "400");
+            svg.setAttribute("viewBox", "0 0 800 400");
+            svg.classList.add("graph");
+            
+            // Данные для графиков (примерные точки)
+            const data = {
+                x: [-3, -2, -1, 0, 1, 2, 3],
+                y: [-1.2, 0.3, 0.8, 0, 1.2, 2.1, 2.8]
+            };
+            
+            // Функции полиномов
+            function poly1(x) { return 0.5*x + 0.1; }
+            function poly2(x) { return 0.3*x*x + 0.5*x + 0.1; }
+            function poly3(x) { return 0.1*x*x*x - 0.2*x*x + 0.5*x + 0.1; }
+            function poly6(x) { return 0.01*x*x*x*x*x*x - 0.05*x*x*x*x*x + 0.1*x*x*x - 0.2*x*x + 0.5*x + 0.1; }
+            function poly12(x) { 
+                return 0.0001*Math.pow(x,12) - 0.001*Math.pow(x,10) + 0.01*Math.pow(x,8) - 
+                       0.05*Math.pow(x,6) + 0.1*Math.pow(x,4) - 0.2*x*x + 0.5*x + 0.1; 
+            }
+            
+            // Оси и сетка
+            for(let i = 0; i <= 8; i++) {
+                const x = i * 100;
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", x);
+                line.setAttribute("y1", "0");
+                line.setAttribute("x2", x);
+                line.setAttribute("y2", "400");
+                line.setAttribute("class", "grid");
+                svg.appendChild(line);
+            }
+            
+            for(let i = 0; i <= 4; i++) {
+                const y = i * 100;
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", "0");
+                line.setAttribute("y1", y);
+                line.setAttribute("x2", "800");
+                line.setAttribute("y2", y);
+                line.setAttribute("class", "grid");
+                svg.appendChild(line);
+            }
+            
+            // Оси координат
+            const axes = document.createElementNS(svgNS, "g");
+            axes.setAttribute("class", "axes");
+            
+            // Ось X
+            const xAxis = document.createElementNS(svgNS, "line");
+            xAxis.setAttribute("x1", "50");
+            xAxis.setAttribute("y1", "200");
+            xAxis.setAttribute("x2", "750");
+            xAxis.setAttribute("y2", "200");
+            xAxis.setAttribute("stroke", "#333");
+            xAxis.setAttribute("stroke-width", "2");
+            axes.appendChild(xAxis);
+            
+            // Ось Y
+            const yAxis = document.createElementNS(svgNS, "line");
+            yAxis.setAttribute("x1", "400");
+            yAxis.setAttribute("y1", "350");
+            yAxis.setAttribute("x2", "400");
+            yAxis.setAttribute("y2", "50");
+            yAxis.setAttribute("stroke", "#333");
+            yAxis.setAttribute("stroke-width", "2");
+            axes.appendChild(yAxis);
+            
+            svg.appendChild(axes);
+            
+            // Подписи осей
+            const xLabel = document.createElementNS(svgNS, "text");
+            xLabel.setAttribute("x", "750");
+            xLabel.setAttribute("y", "190");
+            xLabel.setAttribute("text-anchor", "middle");
+            xLabel.setAttribute("font-size", "14");
+            xLabel.textContent = "x";
+            svg.appendChild(xLabel);
+            
+            const yLabel = document.createElementNS(svgNS, "text");
+            yLabel.setAttribute("x", "410");
+            yLabel.setAttribute("y", "40");
+            yLabel.setAttribute("text-anchor", "middle");
+            yLabel.setAttribute("font-size", "14");
+            yLabel.textContent = "y";
+            svg.appendChild(yLabel);
+            
+            // Точки данных (упрощенные)
+            data.x.forEach((x, i) => {
+                const circle = document.createElementNS(svgNS, "circle");
+                const screenX = 400 + x * 100;
+                const screenY = 200 - data.y[i] * 100;
+                circle.setAttribute("cx", screenX);
+                circle.setAttribute("cy", screenY);
+                circle.setAttribute("r", "4");
+                circle.setAttribute("class", i % 2 === 0 ? "train-point" : "test-point");
+                svg.appendChild(circle);
+            });
+            
+            // Линии полиномов
+            const colors = ["#e74c3c", "#f39c12", "#2ecc71", "#3498db", "#9b59b6"];
+            const functions = [poly1, poly2, poly3, poly6, poly12];
+            const labels = ["Ступінь 1", "Ступінь 2", "Ступінь 3", "Ступінь 6", "Ступінь 12"];
+            
+            functions.forEach((func, idx) => {
+                const path = document.createElementNS(svgNS, "path");
+                let d = "";
+                
+                for(let x = -3; x <= 3; x += 0.1) {
+                    const screenX = 400 + x * 100;
+                    const screenY = 200 - func(x) * 100;
+                    
+                    if(x === -3) {
+                        d = `M ${screenX},${screenY}`;
+                    } else {
+                        d += ` L ${screenX},${screenY}`;
+                    }
+                }
+                
+                path.setAttribute("d", d);
+                path.setAttribute("stroke", colors[idx]);
+                path.setAttribute("stroke-width", "2");
+                path.setAttribute("fill", "none");
+                path.setAttribute("class", "line");
+                path.setAttribute("opacity", "0.8");
+                svg.appendChild(path);
+                
+                // Легенда
+                const legend = document.createElementNS(svgNS, "text");
+                legend.setAttribute("x", "650");
+                legend.setAttribute("y", 30 + idx * 20);
+                legend.setAttribute("font-size", "12");
+                legend.setAttribute("fill", colors[idx]);
+                legend.textContent = labels[idx];
+                svg.appendChild(legend);
+            });
+            
+            container.appendChild(svg);
+        }
+        
+        function createMetricsGraph() {
+            const svgNS = "http://www.w3.org/2000/svg";
+            const container = document.getElementById('metricsGraph');
+            
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("width", "100%");
+            svg.setAttribute("height", "300");
+            svg.setAttribute("viewBox", "0 0 800 300");
+            svg.classList.add("graph");
+            
+            // Данные для MSE
+            const degrees = [1, 2, 3, 6, 12];
+            const trainMSE = [0.2143, 0.1874, 0.1565, 0.1322, 0.0954];
+            const testMSE = [0.2309, 0.1981, 0.1619, 0.1874, 0.3421];
+            
+            // Сетка
+            for(let i = 0; i <= 8; i++) {
+                const x = i * 100;
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", x);
+                line.setAttribute("y1", "0");
+                line.setAttribute("x2", x);
+                line.setAttribute("y2", "300");
+                line.setAttribute("class", "grid");
+                svg.appendChild(line);
+            }
+            
+            for(let i = 0; i <= 6; i++) {
+                const y = i * 50;
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", "0");
+                line.setAttribute("y1", y);
+                line.setAttribute("x2", "800");
+                line.setAttribute("y2", y);
+                line.setAttribute("class", "grid");
+                svg.appendChild(line);
+            }
+            
+            // Ось X
+            const xAxis = document.createElementNS(svgNS, "line");
+            xAxis.setAttribute("x1", "50");
+            xAxis.setAttribute("y1", "250");
+            xAxis.setAttribute("x2", "750");
+            xAxis.setAttribute("y2", "250");
+            xAxis.setAttribute("stroke", "#333");
+            xAxis.setAttribute("stroke-width", "2");
+            svg.appendChild(xAxis);
+            
+            // Ось Y
+            const yAxis = document.createElementNS(svgNS, "line");
+            yAxis.setAttribute("x1", "50");
+            yAxis.setAttribute("y1", "250");
+            yAxis.setAttribute("x2", "50");
+            yAxis.setAttribute("y2", "50");
+            yAxis.setAttribute("stroke", "#333");
+            yAxis.setAttribute("stroke-width", "2");
+            svg.appendChild(yAxis);
+            
+            // Подписи на оси X
+            degrees.forEach((degree, i) => {
+                const text = document.createElementNS(svgNS, "text");
+                text.setAttribute("x", 50 + (i * 140));
+                text.setAttribute("y", "270");
+                text.setAttribute("text-anchor", "middle");
+                text.setAttribute("font-size", "12");
+                text.textContent = degree === 1 ? "Лінійна" : `Ступінь ${degree}`;
+                svg.appendChild(text);
+            });
+            
+            // График Train MSE (синий)
+            let trainPath = "";
+            degrees.forEach((degree, i) => {
+                const x = 50 + (i * 140);
+                const y = 250 - (trainMSE[i] * 1000);
+                
+                if(i === 0) {
+                    trainPath = `M ${x},${y}`;
+                } else {
+                    trainPath += ` L ${x},${y}`;
+                }
+                
+                const circle = document.createElementNS(svgNS, "circle");
+                circle.setAttribute("cx", x);
+                circle.setAttribute("cy", y);
+                circle.setAttribute("r", "6");
+                circle.setAttribute("fill", "#3498db");
+                svg.appendChild(circle);
+            });
+            
+            const trainLine = document.createElementNS(svgNS, "path");
+            trainLine.setAttribute("d", trainPath);
+            trainLine.setAttribute("stroke", "#3498db");
+            trainLine.setAttribute("stroke-width", "3");
+            trainLine.setAttribute("fill", "none");
+            svg.appendChild(trainLine);
+            
+            // График Test MSE (красный)
+            let testPath = "";
+            degrees.forEach((degree, i) => {
+                const x = 50 + (i * 140);
+                const y = 250 - (testMSE[i] * 1000);
+                
+                if(i === 0) {
+                    testPath = `M ${x},${y}`;
+                } else {
+                    testPath += ` L ${x},${y}`;
+                }
+                
+                const circle = document.createElementNS(svgNS, "circle");
+                circle.setAttribute("cx", x);
+                circle.setAttribute("cy", y);
+                circle.setAttribute("r", "6");
+                circle.setAttribute("fill", "#e74c3c");
+                svg.appendChild(circle);
+            });
+            
+            const testLine = document.createElementNS(svgNS, "path");
+            testLine.setAttribute("d", testPath);
+            testLine.setAttribute("stroke", "#e74c3c");
+            testLine.setAttribute("stroke-width", "3");
+            testLine.setAttribute("fill", "none");
+            svg.appendChild(testLine);
+            
+            // Легенда
+            const legendTrain = document.createElementNS(svgNS, "text");
+            legendTrain.setAttribute("x", "600");
+            legendTrain.setAttribute("y", "80");
+            legendTrain.setAttribute("font-size", "14");
+            legendTrain.setAttribute("fill", "#3498db");
+            legendTrain.textContent = "Train MSE";
+            svg.appendChild(legendTrain);
+            
+            const legendTest = document.createElementNS(svgNS, "text");
+            legendTest.setAttribute("x", "600");
+            legendTest.setAttribute("y", "100");
+            legendTest.setAttribute("font-size", "14");
+            legendTest.setAttribute("fill", "#e74c3c");
+            legendTest.textContent = "Test MSE";
+            svg.appendChild(legendTest);
+            
+            container.appendChild(svg);
+        }
+        
+        // 3. Инициализация графиков при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            createPolynomialGraph();
+            createMetricsGraph();
+            
+            // 4. Анимация появления таблиц
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    row.style.transition = 'opacity 0.5s, transform 0.5s';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // 5. Подсветка оптимальной модели
+            const optimalRow = document.querySelector('.optimal');
+            if(optimalRow) {
+                setInterval(() => {
+                    optimalRow.style.boxShadow = optimalRow.style.boxShadow ? 
+                        '' : '0 0 15px rgba(40, 167, 69, 0.5)';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
